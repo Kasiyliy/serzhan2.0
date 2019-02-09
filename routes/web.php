@@ -18,6 +18,12 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', ['as' => 'home' , 'uses' => 'HomeController@index']);
+
 Route::get('/categories', ['as' => 'category.index' , 'uses' => 'CategoryController@index']);
 Route::get('/categories/create', ['as' => 'category.create' , 'uses' => 'CategoryController@create']);
 Route::post('/categories/store', ['as' => 'category.store' , 'uses' => 'CategoryController@store']);
+
+Route::get('/clients', ['as' => 'client.index' , 'uses' => 'ClientController@index']);
+Route::get('/clients/create', ['as' => 'client.create' , 'uses' => 'ClientController@create']);
+Route::post('/clients/store', ['as' => 'client.store' , 'uses' => 'ClientController@store']);
+
