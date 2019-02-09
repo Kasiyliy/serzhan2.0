@@ -22,3 +22,4 @@ Route::get('/categories', ['as' => 'category.index' , 'uses' => 'CategoryControl
 Route::get('/status', ['as' => 'status.index' , 'uses' => 'StatusController@index']);
 Route::get('/categories/create', ['as' => 'category.create' , 'uses' => 'CategoryController@create']);
 Route::get('/statuses/create', ['as' => 'status.create' , 'uses' => 'StatusController@create']);
+Route::post('/categories/store', ['as' => 'category.store' , 'uses' => 'CategoryController@store']);
