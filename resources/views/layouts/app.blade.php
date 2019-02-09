@@ -83,7 +83,7 @@
                                 <div class="list-group ">
                                     <a href="/about" class="list-group-item list-group-item-action ">About</a>
                                     <a href="/categories" class="list-group-item list-group-item-action ">Categories</a>
-                                    <a href="#" class="list-group-item list-group-item-action ">Overview</a>
+                                    <a href="/roles" class="list-group-item list-group-item-action ">Roles</a>
                                     <a href="#" class="list-group-item list-group-item-action ">Events</a>
                                     <a href="#" class="list-group-item list-group-item-action ">Profile</a>
                                     <a href="#" class="list-group-item list-group-item-action ">Status</a>

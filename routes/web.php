@@ -21,3 +21,7 @@ Route::get('/home', ['as' => 'home' , 'uses' => 'HomeController@index']);
 Route::get('/categories', ['as' => 'category.index' , 'uses' => 'CategoryController@index']);
 Route::get('/categories/create', ['as' => 'category.create' , 'uses' => 'CategoryController@create']);
 Route::post('/categories/store', ['as' => 'category.store' , 'uses' => 'CategoryController@store']);
+
+Route::get('/roles', ['as' => 'role.index' , 'uses' => 'RoleController@index']);
+Route::get('/roles/create', ['as' => 'role.create' , 'uses' => 'RoleController@create']);
+Route::post('/roles/store', ['as' => 'role.store' , 'uses' => 'RoleController@store']);
