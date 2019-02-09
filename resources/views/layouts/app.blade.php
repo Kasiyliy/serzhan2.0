@@ -81,12 +81,13 @@
                         <div class="card">
                             <div class="border-right" >
                                 <div class="list-group ">
-                                    <a href="/about" class="list-group-item list-group-item-action ">About</a>
-                                    <a href="/categories" class="list-group-item list-group-item-action ">Categories</a>
+                                    <a href="/about" class="list-group-item list-group-item-action ">О нас</a>
+                                    <a href="/categories" class="list-group-item list-group-item-action ">Категорий</a>
                                     <a href="#" class="list-group-item list-group-item-action ">Overview</a>
                                     <a href="#" class="list-group-item list-group-item-action ">Events</a>
                                     <a href="#" class="list-group-item list-group-item-action ">Profile</a>
-                                    <a href="/statuses" class="list-group-item list-group-item-action ">Статус</a>
+                                    <a href="/clients" class="list-group-item list-group-item-action ">Клиенты</a>
+                                    <a href="/statuses" class="list-group-item list-group-item-action ">Статусы</a>
                                 </div>
                             </div>
                         </div>
