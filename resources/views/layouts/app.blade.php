@@ -82,8 +82,9 @@
                             <div class="border-right" >
                                 <div class="list-group ">
                                     <a href="/about" class="list-group-item list-group-item-action ">О нас</a>
-                                    <a href="/categories" class="list-group-item list-group-item-action ">Категорий</a>
+                                    <a href="/categories" class="list-group-item list-group-item-action ">Категории</a>
                                     <a href="#" class="list-group-item list-group-item-action ">Overview</a>
+                                    <a href="/roles" class="list-group-item list-group-item-action ">Роли</a>
                                     <a href="#" class="list-group-item list-group-item-action ">Events</a>
                                     <a href="#" class="list-group-item list-group-item-action ">Profile</a>
                                     <a href="/clients" class="list-group-item list-group-item-action ">Клиенты</a>

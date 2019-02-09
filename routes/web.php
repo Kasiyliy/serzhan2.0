@@ -31,3 +31,6 @@ Route::get('/clients', ['as' => 'client.index' , 'uses' => 'ClientController@ind
 Route::get('/clients/create', ['as' => 'client.create' , 'uses' => 'ClientController@create']);
 Route::post('/clients/store', ['as' => 'client.store' , 'uses' => 'ClientController@store']);
 
+Route::get('/roles', ['as' => 'role.index' , 'uses' => 'RoleController@index']);
+Route::get('/roles/create', ['as' => 'role.create' , 'uses' => 'RoleController@create']);
+Route::post('/roles/store', ['as' => 'role.store' , 'uses' => 'RoleController@store']);
