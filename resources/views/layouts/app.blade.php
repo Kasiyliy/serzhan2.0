@@ -86,7 +86,7 @@
                                     <a href="#" class="list-group-item list-group-item-action ">Overview</a>
                                     <a href="#" class="list-group-item list-group-item-action ">Events</a>
                                     <a href="#" class="list-group-item list-group-item-action ">Profile</a>
-                                    <a href="#" class="list-group-item list-group-item-action ">Status</a>
+                                    <a href="/statuses" class="list-group-item list-group-item-action ">Статус</a>
                                 </div>
                             </div>
                         </div>

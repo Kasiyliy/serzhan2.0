@@ -6,19 +6,24 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h2>Status</h2>
-                        <a class="btn btn-success btn-sm" href="{{route('status.create')}}">Add</a>
+                        <h2>Статус</h2>
+                        <a class="btn btn-success btn-sm" href="{{route('status.create')}}">Добавить</a>
                     </div>
                     <div class="card-body">
                         <table class="table table-hover">
                             <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>NAME</th>
-                                </tr>
+                            <tr>
+                                <th>ID</th>
+                                <th>Наименование</th>
+                            </tr>
                             </thead>
                             <tbody>
-
+                            @foreach($statuses as $status)
+                                <tr>
+                                    <td>{{$status->id}}</td>
+                                    <td>{{$status->name}}</td>
+                                </tr>
+                            @endforeach
                             </tbody>
                         </table>
                     </div>
