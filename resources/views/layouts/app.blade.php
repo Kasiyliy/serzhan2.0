@@ -87,6 +87,7 @@
                                     <a href="#" class="list-group-item list-group-item-action ">Events</a>
                                     <a href="#" class="list-group-item list-group-item-action ">Profile</a>
                                     <a href="/clients" class="list-group-item list-group-item-action ">Клиенты</a>
+                                    <a href="/statuses" class="list-group-item list-group-item-action ">Статусы</a>
                                 </div>
                             </div>
                         </div>

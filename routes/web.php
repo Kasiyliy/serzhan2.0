@@ -23,6 +23,10 @@ Route::get('/categories', ['as' => 'category.index' , 'uses' => 'CategoryControl
 Route::get('/categories/create', ['as' => 'category.create' , 'uses' => 'CategoryController@create']);
 Route::post('/categories/store', ['as' => 'category.store' , 'uses' => 'CategoryController@store']);
 
+Route::get('/statuses', ['as' => 'status.index' , 'uses' => 'StatusController@index']);
+Route::get('/statuses/create', ['as' => 'status.create' , 'uses' => 'StatusController@create']);
+Route::post('/statuses/store', ['as' => 'status.store' , 'uses' => 'StatusController@store']);
+
 Route::get('/clients', ['as' => 'client.index' , 'uses' => 'ClientController@index']);
 Route::get('/clients/create', ['as' => 'client.create' , 'uses' => 'ClientController@create']);
 Route::post('/clients/store', ['as' => 'client.store' , 'uses' => 'ClientController@store']);
