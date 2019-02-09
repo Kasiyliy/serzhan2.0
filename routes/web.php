@@ -19,4 +19,6 @@ Auth::routes();
 
 Route::get('/home', ['as' => 'home' , 'uses' => 'HomeController@index']);
 Route::get('/categories', ['as' => 'category.index' , 'uses' => 'CategoryController@index']);
+Route::get('/status', ['as' => 'status.index' , 'uses' => 'StatusController@index']);
 Route::get('/categories/create', ['as' => 'category.create' , 'uses' => 'CategoryController@create']);
+Route::get('/statuses/create', ['as' => 'status.create' , 'uses' => 'StatusController@create']);
