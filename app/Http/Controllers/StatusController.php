@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Category;
+use App\Status;
 use Illuminate\Http\Request;
 use Validator;
 use Session;
 
-class CategoryController extends Controller
+class StatusController extends Controller
 {
     public function __construct()
     {
@@ -16,13 +16,13 @@ class CategoryController extends Controller
 
     public function index()
     {
-        $categories = Category::all();
-        return view('admin.categories.index' , compact("categories"));
+        $statuses = Status::all();
+        return view('admin.statuses.index' , compact("statuses"));
     }
 
     public function create()
     {
-        return view('admin.categories.create');
+        return view('admin.statuses.create');
     }
 
     public function store(Request $request)
@@ -35,14 +35,11 @@ class CategoryController extends Controller
             echo "error";
             return redirect()->back();
         }else{
-            $category =  new Category();
-            $category->name = $request->name;
-            $category->save();
-            Session::flash('success' , 'Категория успешно добавлена!');
+            $status =  new Status();
+            $status->name = $request->name;
+            $status->save();
+            Session::flash('success' , 'Статус успешно добавлен!');
             return redirect()->back();
         }
     }
-
-
-
 }
