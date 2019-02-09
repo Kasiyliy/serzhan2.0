@@ -74,23 +74,29 @@
 
         <main class="py-4 px-2">
             <div class="row">
-                <div class="col-3">
-                    <div class="card">
-                        <div class="border-right" >
-                            <div class="list-group ">
-                                <a href="/about" class="list-group-item list-group-item-action ">About</a>
-                                <a href="/categories" class="list-group-item list-group-item-action ">Categories</a>
-                                <a href="#" class="list-group-item list-group-item-action ">Overview</a>
-                                <a href="#" class="list-group-item list-group-item-action ">Events</a>
-                                <a href="#" class="list-group-item list-group-item-action ">Profile</a>
-                                <a href="#" class="list-group-item list-group-item-action ">Status</a>
+                @if(Auth::user())
+                    <div class="col-3">
+                        <div class="card">
+                            <div class="border-right" >
+                                <div class="list-group ">
+                                    <a href="/about" class="list-group-item list-group-item-action ">About</a>
+                                    <a href="/categories" class="list-group-item list-group-item-action ">Categories</a>
+                                    <a href="#" class="list-group-item list-group-item-action ">Overview</a>
+                                    <a href="#" class="list-group-item list-group-item-action ">Events</a>
+                                    <a href="#" class="list-group-item list-group-item-action ">Profile</a>
+                                    <a href="#" class="list-group-item list-group-item-action ">Status</a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-9">
-                    @yield('content')
-                </div>
+                    <div class="col-9">
+                        @yield('content')
+                    </div>
+                @else
+                    <div class="col-12">
+                        @yield('content')
+                    </div>
+                @endif
             </div>
         </main>
     </div>
