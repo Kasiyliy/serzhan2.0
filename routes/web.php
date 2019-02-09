@@ -22,6 +22,9 @@ Route::get('/home', ['as' => 'home' , 'uses' => 'HomeController@index']);
 Route::get('/categories', ['as' => 'category.index' , 'uses' => 'CategoryController@index']);
 Route::get('/categories/create', ['as' => 'category.create' , 'uses' => 'CategoryController@create']);
 Route::post('/categories/store', ['as' => 'category.store' , 'uses' => 'CategoryController@store']);
+Route::post('/categories/delete/{id}', ['as' => 'category.delete' , 'uses' => 'CategoryController@delete']);
+Route::get('/categories/edit/{id}', ['as' => 'category.edit' , 'uses' => 'CategoryController@edit']);
+Route::post('/categories/update/{id}', ['as' => 'category.update' , 'uses' => 'CategoryController@update']);
 
 Route::get('/statuses', ['as' => 'status.index' , 'uses' => 'StatusController@index']);
 Route::get('/statuses/create', ['as' => 'status.create' , 'uses' => 'StatusController@create']);

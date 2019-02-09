@@ -32,13 +32,55 @@ class CategoryController extends Controller
         ]);
 
         if ($validator->fails()) {
-            echo "error";
             return redirect()->back();
         }else{
             $category =  new Category();
             $category->name = $request->name;
             $category->save();
             Session::flash('success' , 'Категория успешно добавлена!');
+            return redirect()->back();
+        }
+    }
+
+    public function delete($id){
+        $category = Category::find($id);
+        if($category){
+            $category->delete();
+            Session::flash('success' , 'Категория успешно удалена!');
+        }else{
+            Session::flash('error' , 'Категория не существует!');
+        }
+        return redirect()->back();
+    }
+
+    public function edit($id){
+        $category = Category::find($id);
+        if(!$category){
+            Session::flash('error' , 'Категория не существует!');
+            return redirect()->back();
+        }
+
+        return view('admin.categories.edit', compact('category'));
+    }
+
+    public function update(Request $request, $id){
+        $category = Category::find($id);
+        if(!$category){
+            Session::flash('error' , 'Категория не существует!');
+            return redirect()->back();
+        }
+
+        $validator = Validator::make($request->all(), [
+            'name' =>'required'
+        ]);
+
+        if ($validator->fails()) {
+            Session::flash('error' , 'Ошибка!');
+            return redirect()->back()->withErrors($validator);
+        }else{
+            $category->name = $request->name;
+            $category->save();
+            Session::flash('success' , 'Категория успешно обновлена!');
             return redirect()->back();
         }
     }
