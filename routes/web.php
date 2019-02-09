@@ -20,3 +20,4 @@ Auth::routes();
 Route::get('/home', ['as' => 'home' , 'uses' => 'HomeController@index']);
 Route::get('/categories', ['as' => 'category.index' , 'uses' => 'CategoryController@index']);
 Route::get('/categories/create', ['as' => 'category.create' , 'uses' => 'CategoryController@create']);
+Route::post('/categories/store', ['as' => 'category.store' , 'uses' => 'CategoryController@store']);

@@ -6,11 +6,20 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h2>Add category</h2>
-                        <a  class="btn btn-primary btn-sm" href="{{route('category.index')}}">Back</a>
+                        <h2>Добавить категорию</h2>
+                        <a  class="btn btn-primary btn-sm" href="{{route('category.index')}}">Назад</a>
                     </div>
                     <div class="card-body">
-
+                        <form action="{{route('category.store')}}" method="post">
+                            <div class="form-group">
+                                <label for="name">Имя</label>
+                                <input type="text" name="name" class="form-control" placeholder="Наименование" required>
+                            </div>
+                            {{csrf_field()}}
+                            <div class="form-group">
+                                <input type="submit" class="btn btn-success btn-block" value="Добавить">
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
