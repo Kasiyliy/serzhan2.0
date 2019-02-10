@@ -37,3 +37,6 @@ Route::post('/clients/store', ['as' => 'client.store' , 'uses' => 'ClientControl
 Route::get('/roles', ['as' => 'role.index' , 'uses' => 'RoleController@index']);
 Route::get('/roles/create', ['as' => 'role.create' , 'uses' => 'RoleController@create']);
 Route::post('/roles/store', ['as' => 'role.store' , 'uses' => 'RoleController@store']);
+Route::get('/roles/edit/{id}', ['as' => 'role.edit' , 'uses' => 'RoleController@edit']);
+Route::post('/roles/update/{id}', ['as' => 'role.update' , 'uses' => 'RoleController@update']);
+Route::post('/roles/delete/{id}', ['as' => 'role.delete' , 'uses' => 'RoleController@delete']);
