@@ -7,13 +7,21 @@
                 <div class="card">
                     <div class="card-header">
                         <h2>Изменить данные о клиенте</h2>
-                        <a  class="btn btn-primary btn-sm" href="{{route('category.index')}}">Назад</a>
+                        <a  class="btn btn-primary btn-sm" href="{{route('client.index')}}">Назад</a>
                     </div>
                     <div class="card-body">
-                        <form action="{{route('category.update' ,['id'=>$category->id])}}" method="post">
+                        <form action="{{route('client.update' ,['id'=>$client->id])}}" method="post">
                             <div class="form-group">
-                                <label for="name">Имя</label>
-                                <input type="text" value="{{$category->name}}" name="name" class="form-control" placeholder="Наименование" required>
+                                <label for="first_name">Имя</label>
+                                <input type="text" value="{{$client->first_name}}" name="first_name" class="form-control" placeholder="Имя: " required>
+                            </div>
+                            <div class="form-group">
+                                <label for="last_name">Фамилия</label>
+                                <input type="text" value="{{$client->last_name}}" name="last_name" class="form-control" placeholder="Фамилия: " required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone_number">Телефон</label>
+                                <input type="text" value="{{$client->phone_number}}" name="phone_number" class="form-control" placeholder="Телефон: ">
                             </div>
                             {{csrf_field()}}
                             <div class="form-group">
