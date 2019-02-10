@@ -29,6 +29,10 @@ Route::post('/categories/update/{id}', ['as' => 'category.update' , 'uses' => 'C
 Route::get('/statuses', ['as' => 'status.index' , 'uses' => 'StatusController@index']);
 Route::get('/statuses/create', ['as' => 'status.create' , 'uses' => 'StatusController@create']);
 Route::post('/statuses/store', ['as' => 'status.store' , 'uses' => 'StatusController@store']);
+Route::post('/statuses/delete/{id}', ['as' => 'status.delete' , 'uses' => 'StatusController@delete']);
+Route::get('/statuses/edit/{id}', ['as' => 'status.edit' , 'uses' => 'StatusController@edit']);
+Route::post('/statuses/update/{id}', ['as' => 'status.update' , 'uses' => 'StatusController@update']);
+
 
 
 Route::get('/clients', ['as' => 'client.index' , 'uses' => 'ClientController@index']);
