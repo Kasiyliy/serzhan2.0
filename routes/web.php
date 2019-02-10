@@ -34,10 +34,17 @@ Route::get('/statuses/edit/{id}', ['as' => 'status.edit' , 'uses' => 'StatusCont
 Route::post('/statuses/update/{id}', ['as' => 'status.update' , 'uses' => 'StatusController@update']);
 
 
+
 Route::get('/clients', ['as' => 'client.index' , 'uses' => 'ClientController@index']);
 Route::get('/clients/create', ['as' => 'client.create' , 'uses' => 'ClientController@create']);
 Route::post('/clients/store', ['as' => 'client.store' , 'uses' => 'ClientController@store']);
+Route::post('/clients/delete/{id}',['as'=>'client.delete','uses'=>'ClientController@delete']);
+Route::get('/clients/edit/{id}',['as'=>'client.edit','uses'=>'ClientController@edit']);
+Route::post('/clients/update/{id}', ['as' => 'client.update' , 'uses' => 'ClientController@update']);
 
 Route::get('/roles', ['as' => 'role.index' , 'uses' => 'RoleController@index']);
 Route::get('/roles/create', ['as' => 'role.create' , 'uses' => 'RoleController@create']);
 Route::post('/roles/store', ['as' => 'role.store' , 'uses' => 'RoleController@store']);
+Route::get('/roles/edit/{id}', ['as' => 'role.edit' , 'uses' => 'RoleController@edit']);
+Route::post('/roles/update/{id}', ['as' => 'role.update' , 'uses' => 'RoleController@update']);
+Route::post('/roles/delete/{id}', ['as' => 'role.delete' , 'uses' => 'RoleController@delete']);
