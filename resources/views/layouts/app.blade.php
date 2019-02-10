@@ -85,6 +85,7 @@
                                     <a href="/roles" class="list-group-item list-group-item-action ">Роли</a>
                                     <a href="/clients" class="list-group-item list-group-item-action ">Клиенты</a>
                                     <a href="/statuses" class="list-group-item list-group-item-action ">Статусы</a>
+                                    <a href="/statuses" class="list-group-item list-group-item-action ">Статусы</a>
                                 </div>
                             </div>
                         </div>
