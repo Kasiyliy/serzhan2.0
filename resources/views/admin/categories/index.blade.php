@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('content')
     <div class="container-fluid">
@@ -10,7 +10,7 @@
                         <a class="btn btn-success btn-sm" href="{{route('category.create')}}">Добавить</a>
                     </div>
                     <div class="card-body">
-                        <table class="table table-hover">
+                        <table class="table table-hover table-responsive" id="dataTable">
                             <thead>
                                 <tr>
                                     <th>ID</th>
