@@ -4,12 +4,12 @@
     <div class="container-fluid">
         <div class="row justify-content-center">
             <div class="col-sm-12">
-                <div class="card">
-                    <div class="card-header">
+                <div class="panel" style="padding: 10px;">
+                    <div class="panel-header">
                         <h2>Клиенты</h2>
                         <a class="btn btn-success btn-sm" href="{{route('client.create')}}">Добавить</a>
                     </div>
-                    <div class="card-body">
+                    <div class="panel-body">
                         <table class="table table-hover table-responsive" id="dataTable">
                             <thead>
                                 <tr>

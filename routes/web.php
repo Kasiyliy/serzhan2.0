@@ -29,9 +29,6 @@ Route::group(['middleware'=>'auth'], function(){
     Route::post('/categories/update/{id}', ['as' => 'category.update' , 'uses' => 'CategoryController@update'])->where('id', '[0-9]+');
 
     Route::get('/statuses', ['as' => 'status.index' , 'uses' => 'StatusController@index']);
-    Route::get('/statuses/create', ['as' => 'status.create' , 'uses' => 'StatusController@create']);
-    Route::post('/statuses/store', ['as' => 'status.store' , 'uses' => 'StatusController@store']);
-    Route::post('/statuses/delete/{id}', ['as' => 'status.delete' , 'uses' => 'StatusController@delete'])->where('id', '[0-9]+');
     Route::get('/statuses/edit/{id}', ['as' => 'status.edit' , 'uses' => 'StatusController@edit'])->where('id', '[0-9]+');
     Route::post('/statuses/update/{id}', ['as' => 'status.update' , 'uses' => 'StatusController@update'])->where('id', '[0-9]+');
 
@@ -43,11 +40,8 @@ Route::group(['middleware'=>'auth'], function(){
     Route::post('/clients/update/{id}', ['as' => 'client.update' , 'uses' => 'ClientController@update'])->where('id', '[0-9]+');
 
     Route::get('/roles', ['as' => 'role.index' , 'uses' => 'RoleController@index']);
-    Route::get('/roles/create', ['as' => 'role.create' , 'uses' => 'RoleController@create']);
-    Route::post('/roles/store', ['as' => 'role.store' , 'uses' => 'RoleController@store']);
     Route::get('/roles/edit/{id}', ['as' => 'role.edit' , 'uses' => 'RoleController@edit'])->where('id', '[0-9]+');
     Route::post('/roles/update/{id}', ['as' => 'role.update' , 'uses' => 'RoleController@update'])->where('id', '[0-9]+');
-    Route::post('/roles/delete/{id}', ['as' => 'role.delete' , 'uses' => 'RoleController@delete'])->where('id', '[0-9]+');
 
     Route::get('/items', ['as' => 'item.index' , 'uses' => 'ItemController@index']);
     Route::get('/items/create', ['as' => 'item.create' , 'uses' => 'ItemController@create']);

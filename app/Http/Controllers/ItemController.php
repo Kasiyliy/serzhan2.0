@@ -12,8 +12,12 @@ class ItemController extends Controller
 {
     public function index()
     {
+        $allPrice = 0;
         $items = Item::has('category')->with('category')->get();
-        return view('admin.items.index' , compact("items"));
+        foreach ($items as $item){
+            $allPrice += ($item->price * $item->quantity);
+        }
+        return view('admin.items.index' , compact("items", "allPrice"));
     }
 
     public function create()

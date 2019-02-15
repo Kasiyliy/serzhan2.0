@@ -17,7 +17,7 @@ class CreateItemsTable extends Migration
             $table->increments('id');
             $table->text('name');
             $table->integer('quantity')->unsigned()->default(0);
-            $table->integer('price')->unsigned()->default(0);
+            $table->double('price')->unsigned()->default(0);
             $table->integer('category_id')->unsigned();
             $table->foreign('category_id')
                 ->references('id')

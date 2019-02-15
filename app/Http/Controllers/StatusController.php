@@ -39,7 +39,6 @@ class StatusController extends Controller
     }
 
 
-
     public function delete($id){
         $status = Status::find($id);
         if($status){

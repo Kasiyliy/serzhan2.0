@@ -139,7 +139,7 @@
     </div>
     <footer class="main-footer">
         All rights
-        reserved.
+        reserved {{date('Y')}}. SERZHAN.KZ
     </footer>
 </div>
 
