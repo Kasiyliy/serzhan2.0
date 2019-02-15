@@ -61,5 +61,7 @@ Route::group(['middleware'=>'auth'], function(){
     Route::post('/users/delete/{id}', ['as' => 'user.delete' , 'uses' => 'UserController@delete'])->where('id', '[0-9]+');
 
     Route::get('/orders',['as' => 'order.index', 'uses' => 'OrderController@index']);
+
     Route::get('/orders/create',['as' => 'order.create', 'uses' => 'OrderController@create']);
+
 });
