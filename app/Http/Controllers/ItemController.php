@@ -24,7 +24,7 @@ class ItemController extends Controller
     {
         $categories = Category::all();
         if(count($categories) == 0){
-            Session::flash('error' , 'Категорий не существует!');
+            Session::flash('error' , 'Категории не существуют!');
             return redirect()->back();
         }
         return view('admin.items.create', compact('categories'));
@@ -40,7 +40,7 @@ class ItemController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return redirect()->back();
+            return redirect()->back()->withErrors($validator);
         }else{
             $item =  new Item();
             $item->fill($request->all());

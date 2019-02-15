@@ -17,6 +17,7 @@ class UsersTableSeeder extends Seeder
         $user->phone_number = "8-777-777-77-77";
         $user->email = "admin@mail.kz";
         $user->password = bcrypt('112233');
+        $user->untouchable = true;
         $user->role_id = Role::ADMIN_ID;
         $user->save();
     }

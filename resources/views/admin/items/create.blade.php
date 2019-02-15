@@ -4,24 +4,24 @@
     <div class="container-fluid">
         <div class="row justify-content-center">
             <div class="col-sm-12">
-                <div class="card">
-                    <div class="card-header">
+                <div class="panel"  style="padding: 10px">
+                    <div class="panel-header">
                         <h2>Добавить продукт</h2>
                         <a  class="btn btn-primary btn-sm" href="{{route('item.index')}}">Назад</a>
                     </div>
-                    <div class="card-body">
+                    <div class="panel-body">
                         <form action="{{route('item.store')}}" method="post">
                             <div class="form-group">
                                 <label for="name">Наименование</label>
-                                <input type="text" name="name" class="form-control" placeholder="Наименование" required>
+                                <input type="text" name="name" value="{{old('name')}}" class="form-control" placeholder="Наименование" required>
                             </div>
                             <div class="form-group">
                                 <label for="price">Цена</label>
-                                <input  type="number" min="0" value="0" name="price" class="form-control" placeholder="Цена" required>
+                                <input  type="number" min="0" value="{{old('price')}}" value="0" name="price" class="form-control" placeholder="Цена" required>
                             </div>
                             <div class="form-group">
                                 <label for="name">Количество</label>
-                                <input type="number" value="0" min="0" name="quantity" class="form-control" placeholder="Количество" required>
+                                <input type="number" value="0" value="{{old('quantity')}}" min="0" name="quantity" class="form-control" placeholder="Количество" required>
                             </div>
 
                             <div class="form-group">
@@ -37,6 +37,17 @@
                                 <input type="submit" class="btn btn-success btn-block" value="Добавить">
                             </div>
                         </form>
+                    </div>
+                    <div class="panel-footer">
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>

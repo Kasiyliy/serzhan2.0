@@ -28,8 +28,7 @@ class RoleController extends Controller
         ]);
 
         if ($validator->fails()) {
-            echo "error";
-            return redirect()->back();
+            return redirect()->back()->withErrors($validator);
         }else{
             $role =  new Role();
             $role->name = $request->name;

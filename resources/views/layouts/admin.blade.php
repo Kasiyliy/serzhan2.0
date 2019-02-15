@@ -80,50 +80,50 @@
             <ul class="sidebar-menu" data-widget="tree">
                 <li class="header">Главная</li>
                 <li>
-                    <a href="/clients">
+                    <a href="{{route('client.index')}}">
                         <i class="fa fa-users"></i> <span>Клиенты</span>
                     </a>
                 </li>
 
                 <li>
-                    <a href="/statuses">
+                    <a href="{{route('order.index')}}">
                         <i class="fa fa-dollar"></i> <span>Заказы</span>
                     </a>
                 </li>
                 <li>
-                    <a href="/statuses">
+                    <a href="#">
                         <i class="fa fa-caret-left"></i> <span>Возвраты товаров</span>
                     </a>
                 </li>
                 <li>
-                    <a href="/statuses">
+                    <a href="#">
                         <i class="fa fa-money"></i> <span>Должники</span>
                     </a>
                 </li>
                 <li class="header">Склад</li>
                 <li>
-                    <a href="/categories">
+                    <a href="{{route('category.index')}}">
                         <i class="fa fa-list"></i> <span>Категории</span>
                     </a>
                 </li>
                 <li>
-                    <a href="/items">
+                    <a href="{{route('item.index')}}">
                         <i class="glyphicon glyphicon-shopping-cart"></i> <span>Продукты</span>
                     </a>
                 </li>
                 <li class="header">Настройки</li>
                 <li>
-                    <a href="/statuses">
+                    <a href="{{route('status.index')}}">
                         <i class="fa fa-user-secret"></i> <span>Статусы</span>
                     </a>
                 </li>
                 <li>
-                    <a href="/roles">
+                    <a href="{{route('role.index')}}">
                         <i class="fa fa-gears"></i> <span>Роли</span>
                     </a>
                 </li>
                 <li>
-                    <a href="/categories">
+                    <a href="{{route('user.index')}}">
                         <i class="fa fa-id-card"></i> <span>Сотрудники</span>
                     </a>
                 </li>

@@ -25,12 +25,12 @@ class ClientController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'first_name' =>'required',
-            'last_name' =>'required'
+            'last_name' =>'required',
+            'phone_number' =>'required',
         ]);
 
         if ($validator->fails()) {
-            echo "error";
-            return redirect()->back();
+            return redirect()->back()->withErrors($validator);
         }else{
             $client =  new Client();
             $client->first_name = $request->first_name;

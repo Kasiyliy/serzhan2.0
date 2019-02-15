@@ -27,8 +27,7 @@ class StatusController extends Controller
         ]);
 
         if ($validator->fails()) {
-            echo "error";
-            return redirect()->back();
+            return redirect()->back()->withErrors($validator);
         }else{
             $status =  new Status();
             $status->name = $request->name;

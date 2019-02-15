@@ -16,7 +16,9 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-
+Route::get('/', function(){
+    return redirect()->route('login');
+});
 
 Route::group(['middleware'=>'auth'], function(){
     Route::get('/home', ['as' => 'home' , 'uses' => 'HomeController@index']);
@@ -50,4 +52,14 @@ Route::group(['middleware'=>'auth'], function(){
     Route::post('/items/update/{id}', ['as' => 'item.update' , 'uses' => 'ItemController@update'])->where('id', '[0-9]+');
     Route::post('/items/delete/{id}', ['as' => 'item.delete' , 'uses' => 'ItemController@delete'])->where('id', '[0-9]+');
 
+    Route::get('/users', ['as' => 'user.index' , 'uses' => 'UserController@index']);
+    Route::get('/users/create', ['as' => 'user.create' , 'uses' => 'UserController@create']);
+    Route::post('/users/store', ['as' => 'user.store' , 'uses' => 'UserController@store']);
+    Route::get('/users/edit/{id}', ['as' => 'user.edit' , 'uses' => 'UserController@edit'])->where('id', '[0-9]+');
+    Route::post('/users/update/{id}', ['as' => 'user.update' , 'uses' => 'UserController@update'])->where('id', '[0-9]+');
+    Route::post('/users/updatePassword/{id}', ['as' => 'user.updatePassword' , 'uses' => 'UserController@update'])->where('id', '[0-9]+');
+    Route::post('/users/delete/{id}', ['as' => 'user.delete' , 'uses' => 'UserController@delete'])->where('id', '[0-9]+');
+
+    Route::get('/orders',['as' => 'order.index', 'uses' => 'OrderController@index']);
+    Route::get('/orders/create',['as' => 'order.create', 'uses' => 'OrderController@create']);
 });

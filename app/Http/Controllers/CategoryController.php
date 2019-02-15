@@ -27,7 +27,7 @@ class CategoryController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return redirect()->back();
+            return redirect()->back()->withErrors($validator);
         }else{
             $category =  new Category();
             $category->name = $request->name;

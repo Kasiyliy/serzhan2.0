@@ -4,12 +4,12 @@
     <div class="container-fluid">
         <div class="row justify-content-center">
             <div class="col-sm-12">
-                <div class="card">
-                    <div class="card-header">
+                <div class="panel">
+                    <div class="panel-header">
                         <h2>Добавить статус</h2>
                         <a  class="btn btn-primary btn-sm" href="{{route('status.index')}}">Назад</a>
                     </div>
-                    <div class="card-body">
+                    <div class="panel-body">
                         <form action="{{route('status.store')}}" method="post">
                             <div class="form-group">
                                 <label for="name">Имя</label>
@@ -20,6 +20,17 @@
                                 <input type="submit" class="btn btn-success btn-block" value="Добавить">
                             </div>
                         </form>
+                    </div>
+                    <div class="panel-footer">
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>
