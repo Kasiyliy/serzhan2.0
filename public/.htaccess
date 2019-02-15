@@ -4,7 +4,17 @@
     </IfModule>
 
     RewriteEngine On
+#DirectoryIndex /public/server.php
+RewriteEngine On
 
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteRule ^(.+) $1 [L]
+
+RewriteCond %{DOCUMENT_ROOT}/public%{REQUEST_URI} -f
+RewriteRule ^(.+) /public/$1 [L]
+
+Options +SymLinksIfOwnerMatch
+RewriteRule ^(.*)$ /public/ [QSA,L]
     # Handle Authorization Header
     RewriteCond %{HTTP:Authorization} .
     RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
@@ -18,4 +28,16 @@
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
+    RewriteRule ^ app.blade.php [L]
+    RewriteBase /laravel-site/laravel-5-app/public/
+
+    AddType application/x-httpd-php .js
+    AddHandler x-httpd-php5 .js
+    Options All +Indexes
 </IfModule>
+AddType application/x-httpd-php .js
+AddHandler x-httpd-php5 .js
+Options All +Indexes
+<FilesMatch "\.(js|php)$">
+SetHandler application/x-httpd-php
+</FilesMatch>
