@@ -31,7 +31,7 @@
 
                                         <td class="d-flex">
 
-                                            <button type="button" class="btn btn-danger btn-sm mr-1" data-toggle="modal" data-target="#exampleModal{{$client->id}}">
+                                            <button type="button" class="btn btn-danger btn-xs mr-1" data-toggle="modal" data-target="#exampleModal{{$client->id}}">
                                                 Удалить
                                             </button>
 
@@ -62,7 +62,7 @@
                                             </div>
 
 
-                                            <a href="{{route('client.edit' ,['id'=>$client->id ])}}" class="btn-sm btn btn-primary">Изменить</a>
+                                            <a href="{{route('client.edit' ,['id'=>$client->id ])}}" class="btn-xs btn btn-primary">Изменить</a>
                                         </td>
                                     </tr>
                                 @endforeach

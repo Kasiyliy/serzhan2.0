@@ -11,10 +11,11 @@
 
     <link rel="stylesheet" href="{{asset("admin/dist/css/AdminLTE.min.css")}}">
     <link rel="stylesheet" href="{{asset("admin/dist/css/skins/_all-skins.min.css")}}">
+    <link href="{{ asset('css/toastr.css') }}" rel="stylesheet">
 
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.18/css/dataTables.bootstrap.min.css"/>
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.2/css/responsive.bootstrap.min.css"/>
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/scroller/1.5.0/css/scroller.bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="{{asset("admin/bower_components/datatable/css/dataTables.bootstrap.min.css")}}"/>
+    <link rel="stylesheet" type="text/css" href="{{asset("admin/bower_components/datatable/css/responsive.bootstrap.min.css")}}"/>
+    <link rel="stylesheet" type="text/css" href="{{asset("admin/bower_components/datatable/css/scroller.bootstrap.min.css")}}"/>
     @yield('styles')
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
@@ -52,7 +53,7 @@
                                     <a class="btn btn-default btn-flat" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                        Выход
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -106,8 +107,8 @@
                     </a>
                 </li>
                 <li>
-                    <a href="/categories">
-                        <i class="glyphicon glyphicon-shopping-cart"></i> <span>Товары</span>
+                    <a href="/items">
+                        <i class="glyphicon glyphicon-shopping-cart"></i> <span>Продукты</span>
                     </a>
                 </li>
                 <li class="header">Настройки</li>
@@ -147,12 +148,13 @@
 <script src="{{asset("admin/bower_components/jquery/dist/jquery.min.js")}}"></script>
 <script src="{{asset("admin/bower_components/bootstrap/dist/js/bootstrap.min.js")}}"></script>
 <script src="{{asset("admin/dist/js/adminlte.min.js")}}"></script>
+<script src="{{ asset('js/toastr.js') }}"></script>
 
-<script type="text/javascript" src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
-<script type="text/javascript" src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap.min.js"></script>
-<script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.2/js/dataTables.responsive.min.js"></script>
-<script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.2/js/responsive.bootstrap.min.js"></script>
-<script type="text/javascript" src="https://cdn.datatables.net/scroller/1.5.0/js/dataTables.scroller.min.js"></script>
+<script type="text/javascript" src="{{asset("admin/bower_components/datatable/js/jquery.dataTables.min.js")}}"></script>
+<script type="text/javascript" src="{{asset("admin/bower_components/datatable/js/dataTables.bootstrap.min.js")}}"></script>
+<script type="text/javascript" src="{{asset("admin/bower_components/datatable/js/dataTables.responsive.min.js")}}"></script>
+<script type="text/javascript" src="{{asset("admin/bower_components/datatable/js/responsive.bootstrap.min.js")}}"></script>
+<script type="text/javascript" src="{{asset("admin/bower_components/datatable/js/dataTables.scroller.min.js")}}"></script>
 
 
 <script>
@@ -184,6 +186,25 @@
             }
         });
     } );
+</script>
+<script>
+    toastr.options.closeButton = true;
+    @if(Session::has('success'))
+    toastr.success("{{Session::get('success')}}");
+    @endif
+
+    @if(Session::has('info'))
+    toastr.info("{{Session::get('info')}}");
+    @endif
+
+    @if(Session::has('error'))
+    toastr.info("{{Session::get('error')}}");
+    @endif
+
+    @if(Session::has('warning'))
+    toastr.info("{{Session::get('warning')}}");
+    @endif
+
 </script>
 @yield('scripts')
 </body>

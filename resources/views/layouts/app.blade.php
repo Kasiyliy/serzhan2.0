@@ -29,7 +29,7 @@
         <nav class="navbar navbar-expand-sm navbar-light navbar-laravel">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                    SERZHAN.KZ
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -46,11 +46,11 @@
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                <a class="nav-link" href="{{ route('login') }}">ВХОД</a>
                             </li>
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link" href="{{ route('register') }}">РЕГИСТРАЦИЯ</a>
                                 </li>
                             @endif
                         @else
@@ -79,27 +79,9 @@
 
         <main class="py-4 px-2">
             <div class="row">
-                @if(Auth::user())
-                    <div class="col-3">
-                        <div class="card">
-                            <div class="border-right" >
-                                <div class="list-group ">
-                                    <a href="/categories" class="list-group-item list-group-item-action ">Категории</a>
-                                    <a href="/roles" class="list-group-item list-group-item-action ">Роли</a>
-                                    <a href="/clients" class="list-group-item list-group-item-action ">Клиенты</a>
-                                    <a href="/statuses" class="list-group-item list-group-item-action ">Статусы</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-9">
-                        @yield('content')
-                    </div>
-                @else
                     <div class="col-12">
                         @yield('content')
                     </div>
-                @endif
             </div>
         </main>
     </div>

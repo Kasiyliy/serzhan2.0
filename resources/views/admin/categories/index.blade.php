@@ -25,7 +25,7 @@
                                         <td>{{$category->name}}</td>
                                         <td class="d-flex">
 
-                                            <button type="button" class="btn btn-danger btn-sm mr-1" data-toggle="modal" data-target="#exampleModal{{$category->id}}">
+                                            <button type="button" class="btn btn-danger btn-xs mr-1" data-toggle="modal" data-target="#exampleModal{{$category->id}}">
                                                 Удалить
                                             </button>
 
@@ -56,7 +56,7 @@
                                             </div>
 
 
-                                            <a href="{{route('category.edit' ,['id'=>$category->id ])}}" class="btn-sm btn btn-primary">Изменить</a>
+                                            <a href="{{route('category.edit' ,['id'=>$category->id ])}}" class="btn-xs btn btn-primary">Изменить</a>
                                         </td>
                                     </tr>
                                 @endforeach

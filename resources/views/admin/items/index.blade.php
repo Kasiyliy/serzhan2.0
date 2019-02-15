@@ -6,8 +6,8 @@
             <div class="col-sm-12">
                 <div class="card">
                     <div class="card-header">
-                        <h2>Статусы</h2>
-                        <a class="btn btn-success btn-sm" href="{{route('status.create')}}">Добавить</a>
+                        <h2>Продукты</h2>
+                        <a class="btn btn-success btn-sm" href="{{route('item.create')}}">Добавить</a>
                     </div>
                     <div class="card-body">
                         <table class="table table-hover table-responsive" id="dataTable">
@@ -15,25 +15,30 @@
                             <tr>
                                 <th>ID</th>
                                 <th>Наименование</th>
+                                <th>Категория</th>
+                                <th>Количество</th>
+                                <th>Цена</th>
                                 <th>Действия</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($statuses as $status)
+                            @foreach($items as $item)
                                 <tr>
-                                    <td>{{$status->id}}</td>
-                                    <td>{{$status->name}}</td>
+                                    <td>{{$item->id}}</td>
+                                    <td>{{$item->name}}</td>
+                                    <td>{{$item->category->name}}</td>
+                                    <td>{{$item->quantity}}</td>
+                                    <td>{{$item->price}}</td>
                                     <td class="d-flex">
-
-                                        <button type="button" class="btn btn-danger btn-xs mr-1" data-toggle="modal" data-target="#exampleModal{{$status->id}}">
+                                        <button type="button" class="btn btn-danger btn-xs mr-1" data-toggle="modal" data-target="#exampleModal{{$item->id}}">
                                             Удалить
                                         </button>
 
                                         <!-- Modal -->
-                                        <div class="modal fade" id="exampleModal{{$status->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal fade" id="exampleModal{{$item->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
-                                                    <form method="post" action="{{route('status.delete', ['id' => $status->id ])}}">
+                                                    <form method="post" action="{{route('item.delete', ['id' => $item->id ])}}">
                                                         <div class="modal-header">
                                                             <h5 class="modal-title" id="exampleModalLabel">Предупреждение!</h5>
                                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -43,8 +48,6 @@
                                                         <div class="modal-body">
                                                             Вы точно хотите удалить?
                                                             {{csrf_field()}}
-
-
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Отмена</button>
@@ -56,7 +59,7 @@
                                         </div>
 
 
-                                        <a href="{{route('status.edit' ,['id'=>$status->id ])}}" class="btn-xs btn btn-primary">Изменить</a>
+                                        <a href="{{route('item.edit' ,['id'=>$item->id ])}}" class="btn btn-primary btn-xs">Изменить</a>
                                     </td>
                                 </tr>
                             @endforeach

@@ -25,7 +25,7 @@
                                     <td>{{$role->name}}</td>
                                     <td class="d-flex">
 
-                                        <button type="button" class="btn btn-danger btn-sm mr-1" data-toggle="modal" data-target="#exampleModal{{$role->id}}">
+                                        <button type="button" class="btn btn-danger btn-xs mr-1" data-toggle="modal" data-target="#exampleModal{{$role->id}}">
                                             Удалить
                                         </button>
 
@@ -56,7 +56,7 @@
                                         </div>
 
 
-                                        <a href="{{route('role.edit' ,['id'=>$role->id ])}}" class="btn-sm btn btn-primary">Изменить</a>
+                                        <a href="{{route('role.edit' ,['id'=>$role->id ])}}" class="btn-xs btn btn-primary">Изменить</a>
                                     </td>
                                 </tr>
                             @endforeach

@@ -9,10 +9,6 @@ use Session;
 
 class RoleController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
 
     public function index()
     {
@@ -83,7 +79,7 @@ class RoleController extends Controller
         }else{
             $role->name = $request->name;
             $role->save();
-            Session::flash('success' , 'Категория успешно обновлена!');
+            Session::flash('success' , 'Роль успешно обновлена!');
             return redirect()->back();
         }
     }

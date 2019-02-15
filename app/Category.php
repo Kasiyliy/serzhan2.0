@@ -10,4 +10,7 @@ class Category extends Model
     protected $fillable = ['name'];
     protected $table = 'categories';
 
+    public function items(){
+        $this->hasMany('App\Item');
+    }
 }
