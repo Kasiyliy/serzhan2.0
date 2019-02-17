@@ -20,5 +20,6 @@ class UsersTableSeeder extends Seeder
         $user->untouchable = true;
         $user->role_id = Role::ADMIN_ID;
         $user->save();
+
     }
 }
