@@ -64,4 +64,12 @@ Route::group(['middleware'=>'auth'], function(){
 
     Route::get('/orders/create',['as' => 'order.create', 'uses' => 'OrderController@create']);
 
+
+    Route::get('/debtors', ['as' => 'debtor.index' , 'uses' => 'DebtorController@index']);
+    Route::get('/debtors/create', ['as' => 'debtor.create' , 'uses' => 'DebtorController@create']);
+    Route::post('/debtors/store', ['as' => 'debtor.store' , 'uses' => 'DebtorController@store']);
+    Route::post('/debtors/update/{id}', ['as' => 'debtor.update' , 'uses' => 'DebtorController@update'])->where('id', '[0-9]+');
+    Route::get('/debtors/edit/{id}', ['as' => 'debtor.edit' , 'uses' => 'DebtorController@edit'])->where('id', '[0-9]+');
+    Route::post('/debtors/delete/{id}', ['as' => 'debtor.delete' , 'uses' => 'DebtorController@delete'])->where('id', '[0-9]+');
+
 });

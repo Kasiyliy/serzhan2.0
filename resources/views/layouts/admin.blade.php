@@ -96,7 +96,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="{{route('debtor.index')}}">
                         <i class="fa fa-money"></i> <span>Должники</span>
                     </a>
                 </li>

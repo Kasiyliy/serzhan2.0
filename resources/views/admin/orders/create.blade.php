@@ -21,15 +21,26 @@
                                 </select>
                             </div>
 
-                            <div class="form-group">
-                                <label for="price">Цена</label>
-                                <input type="number" disabled min="0" name="price" class="form-control" placeholder="Цена" required>
-                            </div>
                             {{csrf_field()}}
                             <div id="products">
 
                             </div>
-                            <a id="addProduct" class="btn btn-success btn-sm">Добавить товар</a>
+                            <div class="form-group">
+                                <a id="addProduct" class="btn btn-primary btn-sm">Добавить товар</a>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="price">Цена</label>
+                                        <input type="number" disabled min="0" name="price" class="form-control" placeholder="Цена" required>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div>
+
+                                    </div>
+                                </div>
+                            </div>
                             <div class="form-group">
                                 <input type="submit" class="btn btn-success btn-block" value="Добавить">
                             </div>
@@ -61,23 +72,49 @@
                     type : 'GET',
                     success : function(resp){
 
-                        if(resp.length >0){
+                        if(resp.length > 0){
                             var div = document.createElement('div');
-                            div.className = "form-group";
-                            var label = document.createElement('label');
-                            label.innerText = 'Продукт';
-                            div.append(label);
+                            div.className = "form-group row";
+                            var innerDiv1 = document.createElement('div');
+                            innerDiv1.className = "col-sm-6";
+
+                            var innerDiv2 = document.createElement('div');
+                            innerDiv2.className = "col-sm-6";
+
+                            var label1 = document.createElement('label');
+                            label1.innerText = 'Продукт';
+                            innerDiv1.append(label1);
+
+                            var label2 = document.createElement('label');
+                            label2.innerText = 'Цена';
+                            innerDiv2.append(label2);
 
                             var select = document.createElement('select');
                             select.className = "form-control";
+                            select.append(document.createElement('option'));
                             for(var i = 0 ; i < resp.length ; i++){
                                 var option = document.createElement('option');
+
                                 option.value = resp[i].id;
                                 option.innerText = resp[i].name;
+                                option.setAttribute('data-price', resp[i].price);
                                 select.append(option);
 
                             }
-                            div.append(select);
+
+                            var input = document.createElement('input');
+                            input.type = 'number';
+                            input.disabled = true;
+                            input.className = 'form-control';
+                            select.onchange = function (){
+                                input.value = select.options[select.selectedIndex].getAttribute("data-price");
+                            };
+
+                            innerDiv1.append(select);
+                            innerDiv2.append(input);
+
+                            div.append(innerDiv1);
+                            div.append(innerDiv2);
                             $('#products').append(div);
 
                         }else{
