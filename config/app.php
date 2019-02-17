@@ -12,7 +12,7 @@ return [
     | any other location as required by the application or its packages.
     |
     */
-
+    'url' => 'http://localhost:8888/laravel-site/laravel-5-app/public/',
     'name' => env('APP_NAME', 'Laravel'),
 
     /*
