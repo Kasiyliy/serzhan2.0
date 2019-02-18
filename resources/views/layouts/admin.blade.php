@@ -11,11 +11,13 @@
 
     <link rel="stylesheet" href="{{asset("admin/dist/css/AdminLTE.min.css")}}">
     <link rel="stylesheet" href="{{asset("admin/dist/css/skins/_all-skins.min.css")}}">
+    <link rel="stylesheet" href="{{asset("css/jquery.select.css")}}">
     <link href="{{ asset('css/toastr.css') }}" rel="stylesheet">
 
     <link rel="stylesheet" type="text/css" href="{{asset("admin/bower_components/datatable/css/dataTables.bootstrap.min.css")}}"/>
     <link rel="stylesheet" type="text/css" href="{{asset("admin/bower_components/datatable/css/responsive.bootstrap.min.css")}}"/>
     <link rel="stylesheet" type="text/css" href="{{asset("admin/bower_components/datatable/css/scroller.bootstrap.min.css")}}"/>
+
     @yield('styles')
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
@@ -147,6 +149,7 @@
 
 <script src="{{asset("admin/bower_components/jquery/dist/jquery.min.js")}}"></script>
 <script src="{{asset("admin/bower_components/bootstrap/dist/js/bootstrap.min.js")}}"></script>
+<script src="{{asset("js/jquery.select.js")}}"></script>
 <script src="{{asset("admin/dist/js/adminlte.min.js")}}"></script>
 <script src="{{ asset('js/toastr.js') }}"></script>
 
