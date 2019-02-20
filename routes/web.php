@@ -65,7 +65,7 @@ Route::group(['middleware'=>'auth'], function(){
     Route::post('/orders/store',['as' => 'order.store', 'uses' => 'OrderController@store']);
     Route::post('/orders/accept/{id}',['as' => 'order.accept', 'uses' => 'OrderController@accept']);
     Route::get('/orders/show/{id}',['as' => 'order.show', 'uses' => 'OrderController@show']);
-
+    Route::post('/orders/delete/{id}', ['as' => 'order.delete' , 'uses' => 'OrderController@delete'])->where('id', '[0-9]+');
 
     Route::get('/debtors', ['as' => 'debtor.index' , 'uses' => 'DebtorController@index']);
     Route::get('/debtors/create', ['as' => 'debtor.create' , 'uses' => 'DebtorController@create']);

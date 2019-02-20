@@ -14,12 +14,7 @@
                             <div class="form-group">
 
                                 <label for="orders">Заказ</label>
-                                <select name="orders" class="form-control">
-                                    @foreach($orders as $order)
-                                        <option {{$order->id ==$debtor->order_id ? 'selected':''}}
-                                                value="{{$order->id}}">Заказ №{{$order->id}}</option>
-                                    @endforeach
-                                </select>
+                                <input type="number" readonly name="orders" value="{{$debtor->order_id}}" class="form-control" placeholder="Заказ: " >
 
                                 <label for="price">Сумма</label>
                                 <input type="number" name="price" value="{{$debtor->price}}" class="form-control" placeholder="Сумма: " >

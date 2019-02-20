@@ -38,7 +38,7 @@
                                         <div class="modal fade" id="exampleModal{{$order->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
-                                                    <form method="post" action="{{route('item.delete', ['id' => $order->id ])}}">
+                                                    <form method="post" action="{{route('order.delete', ['id' => $order->id ])}}">
                                                         <div class="modal-header">
                                                             <h5 class="modal-title" id="exampleModalLabel">Предупреждение!</h5>
                                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">

@@ -43,6 +43,19 @@ class OrderController extends Controller
 
     }
 
+    public function delete($id){
+        $order = Order::find($id);
+        if(!$order){
+            Session::flash('error' , 'Заказ не найден!');
+        }else{
+            Session::flash('success' , 'Заказ удален!');
+            $order->delete();
+        }
+
+
+        return redirect()->back();
+    }
+
     public function create(){
 
         $clients = Client::all();
