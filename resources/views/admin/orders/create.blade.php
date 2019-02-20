@@ -119,7 +119,7 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="price">Цена</label>
-                                        <input type="number" disabled min="0" name="price" id="overallPrice" class="form-control" placeholder="Цена" required>
+                                        <input type="number" disabled min="0" value="0" name="price" id="overallPrice" class="form-control" placeholder="Цена" required>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
@@ -157,7 +157,7 @@
 
 
             $('#makeOrder').on('click',function(event){
-                if(!($('#overallPrice').val() && $('#overallPrice').val > 0)){
+                if(parseFloat($('#overallPrice').val()) == 0){
                     event.preventDefault();
                     toastr.warning('Внимание!', "Выберите товары!");
                 }
