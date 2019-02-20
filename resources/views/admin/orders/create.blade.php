@@ -124,10 +124,12 @@
                                 </div>
                                 <div class="col-sm-6">
                                     <div>
-
+                                        <label for="price">Сумма в долг</label>
+                                        <input type="number" min="0" value="0" name="debtorPrice" class="form-control" placeholder="Цена" required>
                                     </div>
                                 </div>
                             </div>
+
                             <div class="form-group">
                                 <input type="submit"  id="makeOrder" class="btn btn-success btn-block" value="Сделать заказ">
                             </div>
@@ -252,7 +254,7 @@
                             var inputPrice = document.createElement('input');
                             inputPrice.type = 'number';
                             inputPrice.name = 'productPrice[]';
-                            inputPrice.readonly = !switchValue;
+                            inputPrice.readOnly = !switchValue;
                             inputPrice.className = 'form-control my-switches';
                             selectProduct.onchange = function (){
                                 inputPrice.value = selectProduct.options[selectProduct.selectedIndex].getAttribute("data-price");
@@ -263,7 +265,6 @@
                             removeA.innerText = "X";
                             removeA.onclick = function(){
                                 div.remove();
-
                             };
 
                             var inputQuantity = document.createElement('input');

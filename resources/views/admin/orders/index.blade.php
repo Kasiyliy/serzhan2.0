@@ -34,7 +34,6 @@
                                         <button type="button" class="btn btn-danger btn-xs mr-1" data-toggle="modal" data-target="#exampleModal{{$order->id}}">
                                             Удалить
                                         </button>
-
                                         <!-- Modal -->
                                         <div class="modal fade" id="exampleModal{{$order->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                             <div class="modal-dialog" role="document">
@@ -61,6 +60,8 @@
 
 
                                         <a href="{{route('order.accept' ,['id'=>$order->id ])}}" class="btn btn-primary btn-xs">Изменить</a>
+                                        <a href="{{route('order.show',['id'=>$order->id ])}}" class="btn fa fa-print btn-xs mr-1">
+                                        </a>
                                     </td>
                                     <td>
                                         <form class="d-inline" action="{{route('order.accept' ,['id'=>$order->id ])}}"  method="post">

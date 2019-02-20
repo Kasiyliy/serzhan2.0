@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Client;
+use App\Debtor;
 use App\Item;
 use App\Order;
 use App\OrderItem;
@@ -27,6 +28,21 @@ class OrderController extends Controller
         return redirect()->back();
     }
 
+
+    public function show($id){
+        $order = Order::find($id);
+        if(!$order){
+            Session::flash('error' , 'Заказ не найден!');
+            return redirect()->back();
+        }
+        $debt = 0;
+        foreach ($order->debtors as $debtor){
+            $debt+= $debtor->price;
+        }
+        return view('admin.orders.show',compact('order', 'debt'));
+
+    }
+
     public function create(){
 
         $clients = Client::all();
@@ -37,9 +53,10 @@ class OrderController extends Controller
     public function store(Request $request){
 
         $validator = Validator::make($request->all(), [
-            'price' =>'required|numeric',
+            'price' =>'required|numeric|min:1',
             'client_id' =>'required|numeric',
             'productId.*' =>'required|numeric|min:0',
+            'debtorPrice' =>'required|numeric|min:0',
             'productPrice.*' =>'required|numeric|min:0',
             'productQuantity.*' =>'required|numeric|min:0',
         ]);
@@ -71,6 +88,13 @@ class OrderController extends Controller
             }
 
             $order->save();
+            $debtor = new Debtor();
+            if($request->debtorPrice > 0){
+                $debtor->price = $request->debtorPrice;
+                $debtor->order_id = $order->id;
+                $debtor->save();
+            }
+
 
             for($i = 0 ; $i < count($productIds);$i++){
                 $orderItem = new OrderItem();
