@@ -17,7 +17,9 @@
                                 <th>Продавец</th>
                                 <th>Клиент</th>
                                 <th>Цена</th>
+                                <th>Принят</th>
                                 <th>Действия</th>
+                                <th>Принять/Отклонить</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -27,6 +29,7 @@
                                     <td>{{$order->user->name}}</td>
                                     <td>{{$order->client->first_name.' '.$order->client->last_name}}</td>
                                     <td>{{$order->price}}</td>
+                                    <td><span class=' btn-sm{{$order->accepted ? " btn-success fa fa-plus-circle" : " btn-danger fa fa-minus-circle" }}' aria-hidden="true"></span></td>
                                     <td class="d-flex">
                                         <button type="button" class="btn btn-danger btn-xs mr-1" data-toggle="modal" data-target="#exampleModal{{$order->id}}">
                                             Удалить
@@ -57,7 +60,21 @@
                                         </div>
 
 
-                                        <a href="{{route('item.edit' ,['id'=>$order->id ])}}" class="btn btn-primary btn-xs">Изменить</a>
+                                        <a href="{{route('order.accept' ,['id'=>$order->id ])}}" class="btn btn-primary btn-xs">Изменить</a>
+                                    </td>
+                                    <td>
+                                        <form class="d-inline" action="{{route('order.accept' ,['id'=>$order->id ])}}"  method="post">
+                                            {{csrf_field()}}
+                                                @if($order->accepted)
+                                                <button type="submit" class="btn btn-warning btn-xs">
+                                                Отклонить
+                                                </button>
+                                                @else
+                                                <button type="submit" class="btn btn-success btn-xs">
+                                                    Принять
+                                                </button>
+                                            @endif
+                                        </form>
                                     </td>
                                 </tr>
                             @endforeach

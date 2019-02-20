@@ -97,7 +97,7 @@
                             </div>
                         </div>
 
-                        <form action="{{route('item.store')}}" method="post">
+                        <form action="{{route('order.store')}}" method="post">
 
                             <div class="form-group">
                                 <label for="client">Клиент</label>
@@ -119,7 +119,7 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="price">Цена</label>
-                                        <input type="number" disabled min="0" value="0" name="price" id="overallPrice" class="form-control" placeholder="Цена" required>
+                                        <input type="number" readonly min="0" value="0" name="price" id="overallPrice" class="form-control" placeholder="Цена" required>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
@@ -169,7 +169,7 @@
                 switchValue = !switchValue;
 
                 $('.my-switches').each(function (obj) {
-                    $(this).attr('disabled', !switchValue);
+                    $(this).attr('readonly', !switchValue);
                 });
 
                 $('.selectpicker').each(function(){
@@ -252,7 +252,7 @@
                             var inputPrice = document.createElement('input');
                             inputPrice.type = 'number';
                             inputPrice.name = 'productPrice[]';
-                            inputPrice.disabled = !switchValue;
+                            inputPrice.readonly = !switchValue;
                             inputPrice.className = 'form-control my-switches';
                             selectProduct.onchange = function (){
                                 inputPrice.value = selectProduct.options[selectProduct.selectedIndex].getAttribute("data-price");

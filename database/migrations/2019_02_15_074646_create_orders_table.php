@@ -16,6 +16,7 @@ class CreateOrdersTable extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('price')->unsigned();
+            $table->boolean('accepted')->default(0);
             $table->integer('client_id')->unsigned();
             $table->foreign('client_id')
                 ->references('id')
