@@ -119,7 +119,7 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="price">Цена</label>
-                                        <input type="number" disabled min="0" name="price" class="form-control" placeholder="Цена" required>
+                                        <input type="number" disabled min="0" name="price" id="overallPrice" class="form-control" placeholder="Цена" required>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
@@ -129,7 +129,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <input type="submit" class="btn btn-success btn-block" value="Добавить">
+                                <input type="submit"  id="makeOrder" class="btn btn-success btn-block" value="Сделать заказ">
                             </div>
                         </form>
                     </div>
@@ -156,6 +156,13 @@
         $(document).ready(function () {
 
 
+            $('#makeOrder').on('click',function(event){
+                if(!($('#overallPrice').val() && $('#overallPrice').val > 0)){
+                    event.preventDefault();
+                    toastr.warning('Внимание!', "Выберите товары!");
+                }
+            });
+
             var switchValue = false;
 
             $('#mySwitch').on('change', function(){
@@ -164,11 +171,27 @@
                 $('.my-switches').each(function (obj) {
                     $(this).attr('disabled', !switchValue);
                 });
+
+                $('.selectpicker').each(function(){
+                   $(this).trigger("change");
+                });
             });
             
+            function evalPrice(){
+                var price = 0;
+                $('.my-switches').each(function(index){
+                    var quantityInput = $('.my-quantity');
+                    if($(this).val() && quantityInput[index].value){
+                        price += (parseInt($(this).val())* parseInt(quantityInput[index].value));
+                    }
+                });
 
+
+                $('#overallPrice').val(price);
+            }
 
             $('#addProduct').on('click' , function () {
+                evalPrice();
                 $.ajax({
                     url : '/api/products',
                     type : 'GET',
@@ -224,7 +247,6 @@
                                 $(function() {
                                     $('.selectpicker').selectpicker();
                                 });
-
                             }
 
                             var inputPrice = document.createElement('input');
@@ -234,9 +256,7 @@
                             inputPrice.className = 'form-control my-switches';
                             selectProduct.onchange = function (){
                                 inputPrice.value = selectProduct.options[selectProduct.selectedIndex].getAttribute("data-price");
-                                product.id = selectProduct.options[selectProduct.selectedIndex].getAttribute("value");
                             };
-
 
                             var removeA = document.createElement('a');
                             removeA.className = ('btn btn-danger text-white');
@@ -251,8 +271,27 @@
                             inputQuantity.type = 'number';
                             inputQuantity.name = 'productQuantity[]';
                             inputQuantity.setAttribute('min', 0);
-                            inputQuantity.className = 'form-control';
+                            inputQuantity.className = 'form-control my-quantity';
 
+                            inputPrice.addEventListener('click', function(){
+                                evalPrice();
+                            });
+                            inputPrice.addEventListener('input', function(){
+                                evalPrice();
+                            });
+
+                            inputQuantity.addEventListener('input', function(){
+                                evalPrice();
+                            });
+                            inputQuantity.addEventListener('change', function(){
+                                evalPrice();
+                            });
+                            removeA.addEventListener('click', function(){
+                                evalPrice();
+                            });
+                            selectProduct.addEventListener('change', function(){
+                                evalPrice();
+                            });
 
                             innerDiv1.append(selectProduct);
                             innerDiv2.append(inputPrice);
@@ -267,7 +306,7 @@
                             $('#products').append(div);
 
                         }else{
-                            toastr.error('error' , 'Продукты отсутствуют!');
+                            toastr.error('Ошибка!' , 'Продукты отсутствуют!');
                         }
                     },
                     error : function (error) {
