@@ -12,11 +12,11 @@ class StatusesTableSeeder extends Seeder
     public function run()
     {
         $accepted = new Status();
-        $accepted->name = 'Принят';
+        $accepted->name = 'В складе';
         $accepted->save();
 
         $unaccepted = new Status();
-        $unaccepted->name = 'Не принят';
+        $unaccepted->name = 'Не в складе';
         $unaccepted->save();
 
         $hidden = new Status();

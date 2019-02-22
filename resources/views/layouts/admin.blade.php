@@ -150,6 +150,7 @@
 <script src="{{asset("admin/bower_components/jquery/dist/jquery.min.js")}}"></script>
 <script src="{{asset("admin/bower_components/bootstrap/dist/js/bootstrap.min.js")}}"></script>
 <script src="{{asset("js/jquery.select.js")}}"></script>
+<script src="{{asset("js/number.divider.js")}}"></script>
 <script src="{{asset("admin/dist/js/adminlte.min.js")}}"></script>
 <script src="{{ asset('js/toastr.js') }}"></script>
 
@@ -188,7 +189,21 @@
                 }
             }
         });
+
+        $('.divide').divide({
+
+            // current delimiter
+            delimiter:' ',
+
+            // 1000 or 1,000
+            divideThousand:false
+
+        });
+
+        $('.divide').divide();
     } );
+
+
 </script>
 <script>
     toastr.options.closeButton = true;

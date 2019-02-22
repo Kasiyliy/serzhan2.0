@@ -8,7 +8,7 @@
                     <div class="panel-header">
                         <h2>Продукты</h2>
                         <a class="btn btn-success btn-sm" href="{{route('item.create')}}">Добавить</a>
-                        <h3>Общая сумма продуктов в складе {{$allPrice}}</h3>
+                        <h3>Общая сумма продуктов в складе <span class="divide">{{$allPrice}}</span></h3>
                     </div>
                     <div class="panel-body">
                         <table class="table table-hover table-responsive" id="dataTable">
@@ -18,6 +18,7 @@
                                 <th>Наименование</th>
                                 <th>Категория</th>
                                 <th>Количество</th>
+                                <th>Статус</th>
                                 <th>Цена</th>
                                 <th>Действия</th>
                             </tr>
@@ -29,6 +30,7 @@
                                     <td>{{$item->name}}</td>
                                     <td>{{$item->category->name}}</td>
                                     <td>{{$item->quantity}}</td>
+                                    <td>{{$item->status->name}}</td>
                                     <td>{{$item->price}}</td>
                                     <td class="d-flex">
                                         <button type="button" class="btn btn-danger btn-xs mr-1" data-toggle="modal" data-target="#exampleModal{{$item->id}}">

@@ -23,6 +23,11 @@ class CreateItemsTable extends Migration
                 ->references('id')
                 ->on('categories')
                 ->onDelete('cascade');
+            $table->integer('status_id')->unsigned();
+            $table->foreign('status_id')
+                ->references('id')
+                ->on('statuses')
+                ->onDelete('cascade');
             $table->timestamps();
         });
     }

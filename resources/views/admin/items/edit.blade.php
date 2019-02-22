@@ -31,6 +31,14 @@
                                     @endforeach
                                 </select>
                             </div>
+                            <div class="form-group">
+                                <label for="status">Статус</label>
+                                <select name="status_id" class="form-control" placeholder="Статус" required>
+                                    @foreach($statuses as $status)
+                                        <option {{$status->id == $item->status_id ? 'selected':''}} value="{{$status->id}}">{{$status->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                             {{csrf_field()}}
                             <div class="form-group">
                                 <input type="submit" class="btn btn-primary btn-block" value="Изменить">

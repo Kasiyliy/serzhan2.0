@@ -32,6 +32,14 @@
                                     @endforeach
                                 </select>
                             </div>
+                            <div class="form-group">
+                                <label for="status">Статус</label>
+                                <select name="status_id" class="form-control" placeholder="Статус" required>
+                                    @foreach($statuses as $status)
+                                        <option value="{{$status->id}}">{{$status->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                             {{csrf_field()}}
                             <div class="form-group">
                                 <input type="submit" class="btn btn-success btn-block" value="Добавить">

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use App\Item;
+use App\Status;
 use Illuminate\Http\Request;
 use Validator;
 use Session;
@@ -23,11 +24,15 @@ class ItemController extends Controller
     public function create()
     {
         $categories = Category::all();
-        if(count($categories) == 0){
+        $statuses = Status::all();
+        if(count($categories) == 0 ){
             Session::flash('error' , 'Категории не существуют!');
             return redirect()->back();
+        }else if(count($statuses) == 0 ){
+            Session::flash('error' , 'Статусы не существуют!');
+            return redirect()->back();
         }
-        return view('admin.items.create', compact('categories'));
+        return view('admin.items.create', compact('categories', 'statuses'));
     }
 
     public function store(Request $request)
@@ -35,6 +40,7 @@ class ItemController extends Controller
         $validator = Validator::make($request->all(), [
             'name' =>'required',
             'category_id' =>'required|numeric',
+            'status_id' =>'required|numeric',
             'quantity' =>'required|numeric|min:0',
             'price' =>'required|numeric|min:0',
         ]);
@@ -88,6 +94,7 @@ class ItemController extends Controller
         $validator = Validator::make($request->all(), [
             'name' =>'required',
             'category_id' =>'required|numeric',
+            'status_id' =>'required|numeric',
             'quantity' =>'required|numeric|min:0',
             'price' =>'required|numeric|min:0',
         ]);
@@ -95,6 +102,12 @@ class ItemController extends Controller
         $category = Category::find($request->category_id);
         if(!$category){
             Session::flash('error' , 'Категория не существует!');
+            return redirect()->back();
+        }
+
+        $status = Status::find($request->status_id);
+        if(!$status){
+            Session::flash('error' , 'Статус не существует!');
             return redirect()->back();
         }
 
