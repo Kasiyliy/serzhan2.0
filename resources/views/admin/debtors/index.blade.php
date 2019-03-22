@@ -8,6 +8,7 @@
                     <div class="panel-header">
                         <h2>Должники</h2>
                         <a class="btn btn-success btn-sm" href="{{route('debtor.create')}}">Добавить</a>
+                        <h3>Общая сумма долгов: <span class="divide">{{$overAllDebtSum}}</span></h3>
                     </div>
                     <div class="panel-body">
                         <table class="table table-hover table-responsive" id="dataTable">
@@ -76,4 +77,8 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('datatable')
+    @include('layouts.datatable')
 @endsection

@@ -11,11 +11,15 @@ use Validator;
 
 class DebtorController extends Controller
 {
-    //
 
     public function index(){
         $debtors = Debtor::all();
-        return view('admin.debtors.index', compact("debtors"));
+
+        $overAllDebtSum = 0;
+        foreach ($debtors as $debtor){
+            $overAllDebtSum +=$debtor->price;
+        }
+        return view('admin.debtors.index', compact("debtors","overAllDebtSum"));
     }
 
     public function store(Request $request){

@@ -71,6 +71,7 @@ class ItemController extends Controller
 
     public function edit($id){
         $item = Item::find($id);
+        $statuses = Status::all();
         if(!$item){
             Session::flash('error' , ' Продукт не существует!');
             return redirect()->back();
@@ -80,7 +81,7 @@ class ItemController extends Controller
             Session::flash('error' , 'Категорий не существует!');
             return redirect()->back();
         }
-        return view('admin.items.edit', compact('item' , 'categories'));
+        return view('admin.items.edit', compact('item' , 'categories', 'statuses'));
     }
 
     public function update(Request $request, $id){

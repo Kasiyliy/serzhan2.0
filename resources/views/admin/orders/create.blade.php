@@ -235,6 +235,7 @@
                             var selectProduct = document.createElement('select');
                             selectProduct.className = "form-control selectpicker";
                             selectProduct.append(document.createElement('option'));
+                            selectProduct.required = 'required';
 
                             selectProduct.setAttribute('data-live-search', "true");
                             selectProduct.name = "productId[]";
@@ -254,6 +255,7 @@
                             var inputPrice = document.createElement('input');
                             inputPrice.type = 'number';
                             inputPrice.name = 'productPrice[]';
+                            inputPrice.required = 'required';
                             inputPrice.readOnly = !switchValue;
                             inputPrice.className = 'form-control my-switches';
                             selectProduct.onchange = function (){
@@ -270,6 +272,7 @@
                             var inputQuantity = document.createElement('input');
                             inputQuantity.value = 0;
                             inputQuantity.type = 'number';
+                            inputQuantity.required = 'required';
                             inputQuantity.name = 'productQuantity[]';
                             inputQuantity.setAttribute('min', 0);
                             inputQuantity.className = 'form-control my-quantity';

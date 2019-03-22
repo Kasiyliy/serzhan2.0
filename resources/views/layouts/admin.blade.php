@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>SERZHAN.KZ</title>
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <meta name="csrf-token" content="{{ csrf_token() }}"/>
 
     <link rel="stylesheet" href="{{asset("admin/bower_components/bootstrap/dist/css/bootstrap.min.css")}}">
     <link rel="stylesheet" href="{{asset("admin/bower_components/font-awesome/css/font-awesome.min.css")}}">
@@ -14,9 +15,16 @@
     <link rel="stylesheet" href="{{asset("css/jquery.select.css")}}">
     <link href="{{ asset('css/toastr.css') }}" rel="stylesheet">
 
-    <link rel="stylesheet" type="text/css" href="{{asset("admin/bower_components/datatable/css/dataTables.bootstrap.min.css")}}"/>
-    <link rel="stylesheet" type="text/css" href="{{asset("admin/bower_components/datatable/css/responsive.bootstrap.min.css")}}"/>
-    <link rel="stylesheet" type="text/css" href="{{asset("admin/bower_components/datatable/css/scroller.bootstrap.min.css")}}"/>
+    <link rel="stylesheet" type="text/css"
+          href="{{asset("admin/bower_components/datatable/css/dataTables.bootstrap.min.css")}}"/>
+    <link rel="stylesheet" type="text/css"
+          href="{{asset("admin/bower_components/datatable/css/responsive.bootstrap.min.css")}}"/>
+    <link rel="stylesheet" type="text/css"
+          href="{{asset("admin/bower_components/datatable/css/scroller.bootstrap.min.css")}}"/>
+    <link rel="stylesheet" type="text/css"
+          href="{{asset("admin/bower_components/daterangepicker/daterangepicker.css")}}"/>
+    <link href="{{asset("admin/bower_components/select2/select2.css")}}"
+          el="stylesheet" />
 
     @yield('styles')
 </head>
@@ -58,7 +66,8 @@
                                         Выход
                                     </a>
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                          style="display: none;">
                                         @csrf
                                     </form>
                                 </div>
@@ -146,65 +155,40 @@
 </div>
 
 
-
 <script src="{{asset("admin/bower_components/jquery/dist/jquery.min.js")}}"></script>
 <script src="{{asset("admin/bower_components/bootstrap/dist/js/bootstrap.min.js")}}"></script>
 <script src="{{asset("js/jquery.select.js")}}"></script>
 <script src="{{asset("js/number.divider.js")}}"></script>
 <script src="{{asset("admin/dist/js/adminlte.min.js")}}"></script>
-<script src="{{ asset('js/toastr.js') }}"></script>
+<script src="{{asset('js/toastr.js')}}"></script>
+<script src="{{asset('js/bootbox.all.min.js')}}"></script>
 
 <script type="text/javascript" src="{{asset("admin/bower_components/datatable/js/jquery.dataTables.min.js")}}"></script>
-<script type="text/javascript" src="{{asset("admin/bower_components/datatable/js/dataTables.bootstrap.min.js")}}"></script>
-<script type="text/javascript" src="{{asset("admin/bower_components/datatable/js/dataTables.responsive.min.js")}}"></script>
-<script type="text/javascript" src="{{asset("admin/bower_components/datatable/js/responsive.bootstrap.min.js")}}"></script>
-<script type="text/javascript" src="{{asset("admin/bower_components/datatable/js/dataTables.scroller.min.js")}}"></script>
-
+<script type="text/javascript"
+        src="{{asset("admin/bower_components/datatable/js/dataTables.bootstrap.min.js")}}"></script>
+<script type="text/javascript"
+        src="{{asset("admin/bower_components/datatable/js/dataTables.responsive.min.js")}}"></script>
+<script type="text/javascript"
+        src="{{asset("admin/bower_components/datatable/js/responsive.bootstrap.min.js")}}"></script>
+<script type="text/javascript"
+        src="{{asset("admin/bower_components/datatable/js/dataTables.scroller.min.js")}}"></script>
+<script type="text/javascript"
+        src="{{asset("admin/bower_components/datatable/js/dataTables.fixed-header.min.js")}}"></script>
+<script type="text/javascript"
+        src="{{asset("admin/bower_components/daterangepicker/moment.js")}}"></script>
+<script type="text/javascript"
+        src="{{asset("admin/bower_components/daterangepicker/daterangepicker.js")}}"></script>
+<script src="{{asset("admin/bower_components/select2/select2.js")}}"></script>
 
 <script>
-    $(document).ready( function () {
-        $('#dataTable').DataTable({
-            "responsive": true,
-            "lengthMenu": [[10, 25, 50,100,200,500, -1], [10, 25, 50,100,200,500, "Все"]],
-            "language": {
-                "processing": "Подождите...",
-                "search": "Поиск:",
-                "lengthMenu": "Показать _MENU_ записей",
-                "info": "Записи с _START_ до _END_ из _TOTAL_ записей",
-                "infoEmpty": "Записи с 0 до 0 из 0 записей",
-                "infoFiltered": "(отфильтровано из _MAX_ записей)",
-                "infoPostFix": "",
-                "loadingRecords": "Загрузка записей...",
-                "zeroRecords": "Записи отсутствуют.",
-                "emptyTable": "В таблице отсутствуют данные",
-                "paginate": {
-                    "first": "Первая",
-                    "previous": "Предыдущая",
-                    "next": "Следующая",
-                    "last": "Последняя"
-                },
-                "aria": {
-                    "sortAscending": ": активировать для сортировки столбца по возрастанию",
-                    "sortDescending": ": активировать для сортировки столбца по убыванию"
-                }
-            }
-        });
-
-        $('.divide').divide({
-
-            // current delimiter
-            delimiter:' ',
-
-            // 1000 or 1,000
-            divideThousand:false
-
-        });
-
-        $('.divide').divide();
-    } );
-
-
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
 </script>
+@yield('datatable')
+
 <script>
     toastr.options.closeButton = true;
     @if(Session::has('success'))

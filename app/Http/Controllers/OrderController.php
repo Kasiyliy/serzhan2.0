@@ -17,7 +17,20 @@ class OrderController extends Controller
 {
     public function index(){
         $orders = Order::all();
-        return view('admin.orders.index',compact('orders'));
+        $overAllPrice = 0;
+        foreach($orders as $order){
+            $overAllPrice+=$order->price;
+        }
+
+        $debtors = Debtor::all();
+        $overAllDebtSum = 0;
+        foreach ($debtors as $debtor){
+            $overAllDebtSum +=$debtor->price;
+        }
+
+        $clients = Client::all();
+        $users = User::all();
+        return view('admin.orders.index',compact('overAllPrice','overAllDebtSum', 'clients', 'users'));
     }
 
     public function accept($id){
@@ -30,6 +43,20 @@ class OrderController extends Controller
 
 
     public function show($id){
+        $order = Order::find($id);
+        if(!$order){
+            Session::flash('error' , 'Заказ не найден!');
+            return redirect()->back();
+        }
+        $debt = 0;
+        foreach ($order->debtors as $debtor){
+            $debt+= $debtor->price;
+        }
+        return view('admin.orders.show',compact('order', 'debt'));
+
+    }
+
+    public function edit($id){
         $order = Order::find($id);
         if(!$order){
             Session::flash('error' , 'Заказ не найден!');

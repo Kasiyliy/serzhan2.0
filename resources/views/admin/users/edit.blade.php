@@ -52,7 +52,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="name">Повторите пароль</label>
-                                        <input type="repassword" name="repassword" class="form-control" placeholder="Повторите пароль" required>
+                                        <input type="password" name="repassword" class="form-control" placeholder="Повторите пароль" required>
                                     </div>
                                     {{csrf_field()}}
                                     <div class="form-group">
