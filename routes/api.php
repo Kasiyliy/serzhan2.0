@@ -22,4 +22,5 @@ Route::name('api.')->group(function () {
     Route::get('/orders', ['as' => 'order.index', 'uses' => 'Api\OrderController@index']);
     Route::post('/orders/delete/{id}', ['as' => 'order.delete', 'uses' => 'Api\OrderController@delete']);
     Route::post('/orders/accept/{id}', ['as' => 'order.accept', 'uses' => 'Api\OrderController@accept']);
+    Route::post('/debtors/all', ['as' => 'debts.sum', 'uses' => 'Api\OrderController@getDebtSum']);
 });

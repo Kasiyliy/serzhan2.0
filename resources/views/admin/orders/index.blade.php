@@ -19,11 +19,16 @@
                         <h4>Общая сумма заказов: <span class="divide">{{$overAllPrice}}</span></h4>
                         <h4>Общая сумма долгов: <span class="divide">{{$overAllDebtSum}}</span></h4>
                         <h4>Реальная сумма: <span class="divide">{{$overAllPrice - $overAllDebtSum}}</span></h4>
+                        <hr>
+                        <h4>Общая сумма заказов по таблице: <span class="divide" id="overAllPrice"></span></h4>
+                        <h4>Общая сумма долгов по таблице: <span class="divide" id="overAllDebtSum"></span></h4>
+                        <h4>Реальная сумма по таблице: <span class="divide" id="overAllPriceMINUSoverAllDebtSum"></span>
+                        </h4>
                         <div class="container" style="border: 1px solid #ccc; padding: 5px;">
                             <div class="row">
                                 <div class="col-md-3">
                                     <label for="">Дата создания</label>
-                                    <input type="text" class="form-control" name="datefilter" value=""/>
+                                    <input type="text" class="form-control text-center" name="datefilter" value=""/>
                                 </div>
 
                                 <div class="col-md-3">
@@ -71,6 +76,9 @@
                             <tbody>
 
                             </tbody>
+                            <tfoot>
+
+                            </tfoot>
                         </table>
                     </div>
                 </div>
@@ -88,6 +96,28 @@
 
         var table = null;
         $(document).ready(function () {
+
+            function debtSum(array) {
+                $.ajax({
+                    'url': '{{route('api.debts.sum')}}',
+                    'type': 'post',
+                    'data': {
+                        'data': array
+                    },
+                    'success': function (resp) {
+                        console.log(resp);
+                    },
+                    'errpr': function (err) {
+                        console.log(err);
+                    }
+                });
+            }
+
+            function setValues(all, deb) {
+                $('#overAllPrice').html(all);
+                $('#overAllDebtSum').html(deb);
+                $('#overAllPriceMINUSoverAllDebtSum').html(parseInt(all) - parseInt(deb));
+            }
 
 
             var start = moment().subtract(29, 'days');
@@ -155,7 +185,7 @@
                         d.client_id = $('#client_id').val();
                         d.user_id = $('#user_id').val();
                         d.current_user_id = '{{\Illuminate\Support\Facades\Auth::id()}}',
-                        d.accepted = $('#accepted').val();
+                            d.accepted = $('#accepted').val();
                         d.startDate = ($('input[name="datefilter"]').data('daterangepicker').startDate.format('YYYY-MM-DD'));
                         d.endDate = ($('input[name="datefilter"]').data('daterangepicker').endDate.format('YYYY-MM-DD'));
                     }
@@ -196,6 +226,11 @@
                 },
                 "orderCellsTop": true,
                 "fixedHeader": true,
+                "drawCallback": function (settings) {
+                    setValues(table.column(3).data().sum(), table.column(3).data().sum());
+
+                    //debtSum(table.column(0).data());
+                }
             });
 
 
@@ -210,6 +245,7 @@
             $('#accepted').change(function (e) {
                 table.draw();
             });
+            table.column(3).data().sum();
 
             $('.divide').divide({
                 delimiter: ' ',

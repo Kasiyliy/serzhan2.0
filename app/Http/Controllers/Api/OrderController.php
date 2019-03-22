@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Debtor;
 use App\Order;
 use App\Role;
 use App\User;
@@ -111,6 +112,20 @@ class OrderController extends Controller
                 'success' => false
             ], 200);
         }
+    }
+
+    public function getDebtSum(Request $request){
+        $debtors = Debtor::whereIn('order_id', $request->data)->get();
+
+        $sum = 0;
+        foreach ($debtors as $debtor){
+            $sum+=$debtor->price;
+        }
+
+        return response()->json([
+            'success' => true,
+            'sum' => $sum
+        ], 200);
     }
 
     public function getPrintAction($order)

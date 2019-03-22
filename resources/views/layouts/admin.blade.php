@@ -163,7 +163,7 @@
 <script src="{{asset('js/toastr.js')}}"></script>
 <script src="{{asset('js/bootbox.all.min.js')}}"></script>
 
-<script type="text/javascript" src="{{asset("admin/bower_components/datatable/js/jquery.dataTables.min.js")}}"></script>
+<script type="text/javascript" src="{{asset("admin/bower_components/datatable/js/jquery.datatables.min.js")}}"></script>
 <script type="text/javascript"
         src="{{asset("admin/bower_components/datatable/js/dataTables.bootstrap.min.js")}}"></script>
 <script type="text/javascript"
@@ -174,6 +174,9 @@
         src="{{asset("admin/bower_components/datatable/js/dataTables.scroller.min.js")}}"></script>
 <script type="text/javascript"
         src="{{asset("admin/bower_components/datatable/js/dataTables.fixed-header.min.js")}}"></script>
+<script type="text/javascript"
+        src="{{asset("admin/bower_components/datatable/js/datatable.sum.js")}}"></script>
+
 <script type="text/javascript"
         src="{{asset("admin/bower_components/daterangepicker/moment.js")}}"></script>
 <script type="text/javascript"
