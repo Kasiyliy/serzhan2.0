@@ -111,33 +111,38 @@
                         <i class="fa fa-money"></i> <span>Должники</span>
                     </a>
                 </li>
-                <li class="header">Склад</li>
-                <li>
-                    <a href="{{route('category.index')}}">
-                        <i class="fa fa-list"></i> <span>Категории</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="{{route('item.index')}}">
-                        <i class="glyphicon glyphicon-shopping-cart"></i> <span>Продукты</span>
-                    </a>
-                </li>
-                <li class="header">Настройки</li>
-                <li>
-                    <a href="{{route('status.index')}}">
-                        <i class="fa fa-user-secret"></i> <span>Статусы</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="{{route('role.index')}}">
-                        <i class="fa fa-gears"></i> <span>Роли</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="{{route('user.index')}}">
-                        <i class="fa fa-id-card"></i> <span>Сотрудники</span>
-                    </a>
-                </li>
+                @if(\Illuminate\Support\Facades\Auth::user()->isAdmin()
+                || \Illuminate\Support\Facades\Auth::user()->isSuperviewer())
+                    <li class="header">Склад</li>
+                    <li>
+                        <a href="{{route('category.index')}}">
+                            <i class="fa fa-list"></i> <span>Категории</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{route('item.index')}}">
+                            <i class="glyphicon glyphicon-shopping-cart"></i> <span>Продукты</span>
+                        </a>
+                    </li>
+                @endif
+                @if(\Illuminate\Support\Facades\Auth::user()->isAdmin())
+                    <li class="header">Настройки</li>
+                    <li>
+                        <a href="{{route('status.index')}}">
+                            <i class="fa fa-user-secret"></i> <span>Статусы</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{route('role.index')}}">
+                            <i class="fa fa-gears"></i> <span>Роли</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{route('user.index')}}">
+                            <i class="fa fa-id-card"></i> <span>Сотрудники</span>
+                        </a>
+                    </li>
+                @endif
             </ul>
         </section>
     </aside>
