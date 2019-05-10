@@ -100,9 +100,19 @@ class OrderController extends Controller
             $order->accepted = true;
             foreach ($order->orderItems as $orderItem) {
                 $item = $orderItem->item;
+                if($item->quantity < $orderItem->quantity){
+                    return response()->json([
+                        'success' => false
+                    ], 200);
+                }
+            }
+
+            foreach ($order->orderItems as $orderItem) {
+                $item = $orderItem->item;
                 $item->quantity -= $orderItem->quantity;
                 $item->save();
             }
+
             $order->save();
             return response()->json([
                 'success' => true
