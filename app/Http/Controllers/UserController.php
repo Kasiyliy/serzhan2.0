@@ -93,7 +93,6 @@ class UserController extends Controller
             return redirect()->back()->withErrors($validator);
         }else{
             $user->fill($request->all());
-            $user->password = bcrypt($user->password);
             $user->save();
             Session::flash('success' , 'Пользователь успешно обновлен!');
             return redirect()->back();

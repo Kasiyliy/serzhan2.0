@@ -61,10 +61,19 @@ Route::group(['middleware'=>'auth'], function(){
         Route::get('/debtors/edit/{id}', ['as' => 'debtor.edit' , 'uses' => 'DebtorController@edit'])->where('id', '[0-9]+');
         Route::post('/debtors/delete/{id}', ['as' => 'debtor.delete' , 'uses' => 'DebtorController@delete'])->where('id', '[0-9]+');
 
+
+        Route::get('/categories/create', ['as' => 'category.create' , 'uses' => 'CategoryController@create']);
+        Route::post('/categories/store', ['as' => 'category.store' , 'uses' => 'CategoryController@store']);
+        Route::post('/categories/delete/{id}', ['as' => 'category.delete' , 'uses' => 'CategoryController@delete'])->where('id', '[0-9]+');
+        Route::get('/categories/edit/{id}', ['as' => 'category.edit' , 'uses' => 'CategoryController@edit'])->where('id', '[0-9]+');
+        Route::post('/categories/update/{id}', ['as' => 'category.update' , 'uses' => 'CategoryController@update'])->where('id', '[0-9]+');
+
+
     });
 
     Route::get('/items', ['as' => 'item.index' , 'uses' => 'ItemController@index']);
     Route::get('/clients', ['as' => 'client.index' , 'uses' => 'ClientController@index']);
+    Route::get('/categories', ['as' => 'category.index' , 'uses' => 'CategoryController@index']);
 
     Route::get('/debtors', ['as' => 'debtor.index' , 'uses' => 'DebtorController@index']);
     Route::get('/debtors/create', ['as' => 'debtor.create' , 'uses' => 'DebtorController@create']);

@@ -23,4 +23,6 @@ Route::name('api.')->group(function () {
     Route::post('/orders/delete/{id}', ['as' => 'order.delete', 'uses' => 'Api\OrderController@delete']);
     Route::post('/orders/accept/{id}', ['as' => 'order.accept', 'uses' => 'Api\OrderController@accept']);
     Route::post('/debtors/all', ['as' => 'debts.sum', 'uses' => 'Api\OrderController@getDebtSum']);
+
+    Route::get('/debtors', ['as' => 'debt.index', 'uses' => 'Api\DebtorController@index']);
 });

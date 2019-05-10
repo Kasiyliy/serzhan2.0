@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Client;
 use App\Debtor;
 use App\Order;
+use App\User;
 use Illuminate\Http\Request;
 use Session;
 use Validator;
@@ -14,12 +16,14 @@ class DebtorController extends Controller
 
     public function index(){
         $debtors = Debtor::all();
-
         $overAllDebtSum = 0;
         foreach ($debtors as $debtor){
             $overAllDebtSum +=$debtor->price;
         }
-        return view('admin.debtors.index', compact("debtors","overAllDebtSum"));
+
+        $clients = Client::all();
+        $users = User::all();
+        return view('admin.debtors.index', compact("overAllDebtSum", "clients", "users"));
     }
 
     public function store(Request $request){

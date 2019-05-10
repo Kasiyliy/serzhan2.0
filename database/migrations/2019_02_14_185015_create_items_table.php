@@ -29,6 +29,7 @@ class CreateItemsTable extends Migration
                 ->on('statuses')
                 ->onDelete('cascade');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

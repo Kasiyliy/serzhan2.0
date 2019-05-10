@@ -28,6 +28,7 @@ class CreateOrdersTable extends Migration
                 ->on('users')
                 ->onDelete('Cascade');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

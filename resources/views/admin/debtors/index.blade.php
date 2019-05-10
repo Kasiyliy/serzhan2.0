@@ -9,6 +9,42 @@
                         <h2>Должники</h2>
                         <a class="btn btn-success btn-sm" href="{{route('debtor.create')}}">Добавить</a>
                         <h3>Общая сумма долгов: <span class="divide">{{$overAllDebtSum}}</span></h3>
+
+                        <div class="container" style="border: 1px solid #ccc; padding: 5px;">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <label for="">Дата создания</label>
+                                    <input type="text" class="form-control text-center" name="datefilter" value=""/>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <label for="">Клиент</label>
+                                    <select class="form-control" id="client_id">
+                                        <option></option>
+                                        @foreach($clients as $client)
+                                            <option value="{{$client->id}}">{{$client->first_name.' '.$client->last_name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="">Сотрудник</label>
+                                    <select name="user_id" id="user_id" class="form-control">
+                                        <option></option>
+                                        @foreach($users as $user)
+                                            <option value="{{$user->id}}">{{$user->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="">Статус</label>
+                                    <select name="accepted" id="accepted" class="form-control">
+                                        <option></option>
+                                        <option value="1">Принят</option>
+                                        <option value="0">Не принят</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="panel-body">
                         <table class="table table-hover table-responsive" id="dataTable">
@@ -19,57 +55,12 @@
                                 <th>Фамилия</th>
                                 <th>Номер заказа</th>
                                 <th>Сумма</th>
+                                <th>Дата</th>
                                 <th>Действия</th>
 
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($debtors as $debtor)
-                                <tr>
-                                    <td>{{$debtor->id}}</td>
-                                    <td>{{$debtor->order->client->first_name}}</td>
-                                    <td>{{$debtor->order->client->last_name}}</td>
-                                    <td>{{$debtor->order->id}}</td>
-                                    <td>{{$debtor->price}}</td>
-
-
-                                    <td class="d-flex">
-
-                                        <button type="button" class="btn btn-danger btn-xs mr-1" data-toggle="modal" data-target="#exampleModal{{$debtor->id}}">
-                                            Удалить
-                                        </button>
-
-                                        <!-- Modal -->
-                                        <div class="modal fade" id="exampleModal{{$debtor->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                    <form method="post" action="{{route('debtor.delete', ['id' => $debtor->id ])}}">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title" id="exampleModalLabel">Предупреждение!</h5>
-                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                            </button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            Вы точно хотите удалить?
-                                                            {{csrf_field()}}
-
-
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Отмена</button>
-                                                            <input type="submit" value="Удалить" class="btn btn-danger btn-sm mr-1">
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-
-
-                                        <a href="{{route('debtor.edit' ,['id'=>$debtor->id ])}}" class="btn-xs btn btn-primary">Изменить</a>
-                                    </td>
-                                </tr>
-                            @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -80,5 +71,206 @@
 @endsection
 
 @section('datatable')
-    @include('layouts.datatable')
+    <script>
+
+        $('.select2').select2();
+
+        var table = null;
+        $(document).ready(function () {
+
+
+
+            var start = moment().subtract(29, 'days');
+            var end = moment();
+
+            $('input[name="datefilter"]').daterangepicker({
+                startDate: start,
+                endDate: end,
+                locale: {
+                    "format": "DD-MM-YYYY",
+                    "separator": " - ",
+                    "applyLabel": "Принять",
+                    "cancelLabel": "Отмена",
+                    "fromLabel": "От",
+                    "toLabel": "До",
+                    "customRangeLabel": "Выборочный",
+                    "weekLabel": "Н",
+                    "daysOfWeek": [
+                        "Вскр",
+                        "Пн",
+                        "Вт",
+                        "Ср",
+                        "Чт",
+                        "Пт",
+                        "Суб"
+                    ],
+                    "monthNames": [
+                        "Январь",
+                        "Февраль",
+                        "Март",
+                        "Апрель",
+                        "Май",
+                        "Июнь",
+                        "Июль",
+                        "Август",
+                        "Сентябрь",
+                        "Октябрь",
+                        "Ноябрь",
+                        "Декабрь"
+                    ],
+                    "firstDay": 1
+                },
+                ranges: {
+                    'Сегодня': [moment(), moment()],
+                    'Вчера': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                    'Последние 7 дней': [moment().subtract(6, 'days'), moment()],
+                    'Последние 30 дней': [moment().subtract(29, 'days'), moment()],
+                    'Этот месяц': [moment().startOf('month'), moment().endOf('month')],
+                    'Предыдущий месяц': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+                }
+            });
+
+            $('input[name="datefilter"]').on('apply.daterangepicker', function (ev, picker) {
+                $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
+                table.draw();
+            });
+
+
+            table = $('#dataTable').DataTable({
+                "processing": true,
+                "serverSide": true,
+                "ajax": {
+                    "url": "{{route("api.debt.index")}}",
+                    "data": function (d) {
+                        d.client_id = $('#client_id').val();
+                        d.user_id = $('#user_id').val();
+                        d.current_user_id = '{{\Illuminate\Support\Facades\Auth::id()}}',
+                        d.accepted = $('#accepted').val();
+                        d.startDate = ($('input[name="datefilter"]').data('daterangepicker').startDate.format('YYYY-MM-DD'));
+                        d.endDate = ($('input[name="datefilter"]').data('daterangepicker').endDate.format('YYYY-MM-DD'));
+                    }
+                },
+                "order": [[0, "desc"]],
+                "columns": [
+                    {"data": "id"},
+                    {"data": "firstName"},
+                    {"data": "lastName"},
+                    {"data": "order_id"},
+                    {"data": "price"},
+                    {"data": "created_at"},
+                    {"data": "actions", name: "actions", orderable: false, searchable: false}
+                ],
+                "responsive": true,
+                "lengthMenu": [[10, 25, 50, 100, 200, 500, -1], [10, 25, 50, 100, 200, 500, "Все"]],
+                "language": {
+                    "processing": "Подождите...",
+                    "search": "Поиск:",
+                    "lengthMenu": "Показать _MENU_ записей",
+                    "info": "Записи с _START_ до _END_ из _TOTAL_ записей",
+                    "infoEmpty": "Записи с 0 до 0 из 0 записей",
+                    "infoFiltered": "(отфильтровано из _MAX_ записей)",
+                    "infoPostFix": "",
+                    "loadingRecords": "Загрузка записей...",
+                    "zeroRecords": "Записи отсутствуют.",
+                    "emptyTable": "В таблице отсутствуют данные",
+                    "paginate": {
+                        "first": "Первая",
+                        "previous": "Предыдущая",
+                        "next": "Следующая",
+                        "last": "Последняя"
+                    },
+                    "aria": {
+                        "sortAscending": ": активировать для сортировки столбца по возрастанию",
+                        "sortDescending": ": активировать для сортировки столбца по убыванию"
+                    }
+                },
+                "orderCellsTop": true,
+                "fixedHeader": true,
+                "drawCallback": function (settings) {
+
+
+                }
+            });
+
+
+            $('#client_id').change(function (e) {
+                table.draw();
+            });
+
+            $('#user_id').change(function (e) {
+                table.draw();
+            });
+
+            $('#accepted').change(function (e) {
+                table.draw();
+            });
+            table.column(3).data().sum();
+
+            $('.divide').divide({
+                delimiter: ' ',
+                divideThousand: false
+            });
+
+            $('.divide').divide();
+
+        });
+
+        function deleteItem(id) {
+            bootbox.confirm({
+                message: "Вы действительно хотите удалить заказ?",
+                locale: "ru",
+                callback: function (result) {
+                    if (result) {
+                        $.ajax({
+                            url: 'api/orders/delete/' + id,
+                            type: 'post',
+                            success: function (resp) {
+                                if (resp.success) {
+                                    toastr.success("Удален!");
+                                    table.ajax.reload(null, false);
+
+                                } else {
+                                    toastr.warning("Не удалось удалить!");
+                                }
+                            },
+                            error: function (err) {
+                                console.log(err);
+                                toastr.warning("Произошла ошибка!");
+                            }
+                        });
+                    }
+                }
+            });
+        }
+
+
+        function acceptItem(id) {
+            bootbox.confirm({
+                message: "Вы действительно хотите принять заказ?",
+                locale: "ru",
+                callback: function (result) {
+                    if (result) {
+                        $.ajax({
+                            url: 'api/orders/accept/' + id,
+                            type: 'post',
+                            success: function (resp) {
+                                if (resp.success) {
+                                    toastr.success("Принят!");
+                                    table.ajax.reload(null, false);
+
+                                } else {
+                                    toastr.warning("Не удалось принять!");
+                                }
+                            },
+                            error: function (err) {
+                                console.log(err);
+                                toastr.warning("Произошла ошибка!");
+                            }
+                        });
+                    }
+                }
+            });
+        }
+
+    </script>
 @endsection

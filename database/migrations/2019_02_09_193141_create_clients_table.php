@@ -19,6 +19,7 @@ class CreateClientsTable extends Migration
             $table->string('last_name',255 );
             $table->string('phone_number',255 )->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
